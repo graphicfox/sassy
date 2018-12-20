@@ -1,0 +1,17 @@
+/**
+ * Created by Martin Neundorfer on 20.12.2018.
+ * For LABOR.digital
+ */
+
+// Build the css property
+$sassyBreakPointBridge: ""
+$sassyBreakPointBridge: $sassyBreakPointBridge + "xxs: #{$sassyBreakpointXxsMin}|#{$sassyBreakpointXxsMax}, "
+$sassyBreakPointBridge: $sassyBreakPointBridge + "xs: #{$sassyBreakpointXsMin}|#{$sassyBreakpointXsMax}, "
+$sassyBreakPointBridge: $sassyBreakPointBridge + "sm: #{$sassyBreakpointSmMin}|#{$sassyBreakpointSmMax}, "
+$sassyBreakPointBridge: $sassyBreakPointBridge + "md: #{$sassyBreakpointMdMin}|#{$sassyBreakpointMdMax}, "
+$sassyBreakPointBridge: $sassyBreakPointBridge + "lg: #{$sassyBreakpointLgMin}|#{$sassyBreakpointLgMax}, "
+$sassyBreakPointBridge: $sassyBreakPointBridge + "xl: #{$sassyBreakpointXlMin}|#{$sassyBreakpointXlMax}"
+
+// Build the class
+.sassy-breakpoint-bridge
+  font-family: $sassyBreakPointBridge

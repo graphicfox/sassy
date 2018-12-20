@@ -1,0 +1,55 @@
+/**
+ * Created by Martin Neundorfer on 20.12.2018.
+ * For LABOR.digital
+ */
+
+// BREAKPOINTS
+// ==================================================
+// Min sizes
+$sassyBreakpointXxsMin: 0 !default
+$sassyBreakpointXsMin: 0 !default
+$sassyBreakpointSmMin: 550px !default
+$sassyBreakpointMdMin: 768px !default
+$sassyBreakpointLgMin: 992px !default
+$sassyBreakpointXlMin: 1200px !default
+
+// Max sizes
+$sassyBreakpointXxsMax: 449px !default
+$sassyBreakpointXsMax: $sassyBreakpointSmMin - 1px !default
+$sassyBreakpointSmMax: $sassyBreakpointMdMin - 1px !default
+$sassyBreakpointMdMax: $sassyBreakpointLgMin - 1px !default
+$sassyBreakpointLgMax: $sassyBreakpointXlMin - 1px !default
+$sassyBreakpointXlMax: 999999px !default
+
+// Bridge definition
+$sassyBreakpointBridge: (xl: "#{$sassyBreakpointXlMin}|#{$sassyBreakpointXlMax}" )
+
+// GRID
+// ==================================================
+// The number of columns used in the grid by default
+// You can override this by using "of" in your gridItem options
+$sassyGridColumns: 12 !default
+// True to automatically create the flexbox order
+$sassyAutoOrder: true !default
+// The number of elements which get their order automatically set
+$sassyAutoOrderLength: 4 !default
+// The gutter for both the horizontal and vertical axis
+// You can override this by using "offset" in your gridItem options
+$sassyGutter: 30px !default
+// Optional override to change the vertial
+$sassyGutterVertical: $sassyGutter !default
+$sassyGutterHorizontal: $sassyGutter !default
+
+// Container sizes for the different brakepoints
+$sassyContainerWidthXxs: 100% !default
+$sassyContainerWidthXs: 100% !default
+$sassyContainerWidthSm: 550px !default
+$sassyContainerWidthMd: 720px !default
+$sassyContainerWidthLg: 960px !default
+$sassyContainerWidthXl: 1140px !default
+
+// SHORTCUTS
+// ==================================================
+$sg: $sassyGutter
+$sgv: $sassyGutterVertical
+$sgh: $sassyGutterHorizontal

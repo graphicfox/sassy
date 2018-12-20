@@ -1,0 +1,136 @@
+/**
+ * Created by Martin Neundorfer on 20.12.2018.
+ * For LABOR.digital
+ */
+
+// DYNAMIC
+// ==================================================
+=bpSmallerThan($width)
+  @media (max-width: $width)
+    @content
+
+=bpBiggerThan($width)
+  @media (min-width: $width)
+    @content
+
+=bpBetween($widthA, $widthB)
+  @if $widthB > $widthA
+    @media (min-width: $widthA) and (max-width: $widthB)
+      @content
+  @else
+    @media (min-width: $widthB) and (max-width: $widthA)
+      @content
+
+// XXS
+// ==================================================
+=bpXxs()
+  +bpBetween($sassyBreakpointXxsMin, $sassyBreakpointXxsMax)
+    @content
+
+=bpBiggerThanXxs()
+  +bpBiggerThan($sassyBreakpointXxsMax)
+    @content
+
+=bpXxsAndBigger()
+  @content
+
+// XS
+// ==================================================
+=bpSmallerThanXs()
+  +bpSmallerThan($sassyBreakpointXsMin)
+    @content
+
+=bpXsAndSmaller()
+  +bpSmallerThan($sassyBreakpointXsMax)
+    @content
+
+=bpXs()
+  +bpBetween($sassyBreakpointXsMin, $sassyBreakpointXsMax)
+    @content
+
+=bpXsAndBigger()
+  +bpBiggerThan($sassyBreakpointXsMin)
+    @content
+
+=bpBiggerThanXs()
+  +bpBiggerThan($sassyBreakpointXsMax)
+    @content
+
+// SM
+// ==================================================
+=bpSmallerThanSm()
+  +bpSmallerThan($sassyBreakpointSmMin)
+    @content
+
+=bpSmAndSmaller()
+  +bpSmallerThan($sassyBreakpointSmMax)
+    @content
+
+=bpSm()
+  +bpBetween($sassyBreakpointSmMin, $sassyBreakpointSmMax)
+    @content
+
+=bpSmAndBigger()
+  +bpBiggerThan($sassyBreakpointSmMin)
+    @content
+
+=bpBiggerThanSm()
+  +bpBiggerThan($sassyBreakpointSmMax)
+    @content
+
+// MD
+// ==================================================
+=bpSmallerThanMd()
+  +bpSmallerThan($sassyBreakpointMdMin)
+    @content
+
+=bpMdAndSmaller()
+  +bpSmallerThan($sassyBreakpointMdMax)
+    @content
+
+=bpMd()
+  +bpBetween($sassyBreakpointMdMin, $sassyBreakpointMdMax)
+    @content
+
+=bpMdAndBigger()
+  +bpBiggerThan($sassyBreakpointMdMin)
+    @content
+
+=bpBiggerThanMd()
+  +bpBiggerThan($sassyBreakpointMdMax)
+    @content
+
+// LG
+// ==================================================
+=bpSmallerThanLg()
+  +bpSmallerThan($sassyBreakpointLgMin)
+    @content
+
+=bpLgAndSmaller()
+  +bpSmallerThan($sassyBreakpointLgMax)
+    @content
+
+=bpLg()
+  +bpBetween($sassyBreakpointLgMin, $sassyBreakpointLgMax)
+    @content
+
+=bpLgAndBigger()
+  +bpBiggerThan($sassyBreakpointLgMin)
+    @content
+
+=bpBiggerThanLg()
+  +bpBiggerThan($sassyBreakpointLgMax)
+    @content
+
+// XL
+// ==================================================
+=bpSmallerThanXl()
+  +bpSmallerThan($sassyBreakpointXlMin)
+    @content
+
+=bpXlAndSmaller()
+  @content
+
+=bpXl()
+  +bpBetween($sassyBreakpointXlMin, $sassyBreakpointXlMax)
+    @content
