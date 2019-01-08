@@ -1,0 +1,45 @@
+/**
+ * Created by Martin Neundorfer on 08.01.2019.
+ * For LABOR.digital
+ */
+@function _marginValueRenderer($value, $baseValue)
+  @if $value == 0
+    @return 0
+  @else
+    @if unit($value) == ""
+      @return floor($baseValue * $value)
+    @else
+      @return $value
+
+// Default margins
+// =====================================
+=mt($value: 1)
+  margin-top: _marginValueRenderer($value, $sassyMarginVertical)
+
+=mr($value: 1)
+  margin-right: _marginValueRenderer($value, $sassyMarginHorizontal)
+
+=mb($value: 1)
+  margin-bottom: _marginValueRenderer($value, $sassyMarginVertical)
+
+=ml($value: 1)
+  margin-left: _marginValueRenderer($value, $sassyMarginHorizontal)
+
+// Combined margins
+// =====================================
+// Top + Bottom (Vertical)
+=mv($value: 1)
+  +mt($value)
+  +mb($value)
+
+// Left + Right (Horizontal)
+=mh($value: 1)
+  +ml($value)
+  +mr($value)
+
+// All margins
+// =====================================
+=m($value:1)
+  $mv: _marginValueRenderer($value, $sassyMarginVertical)
+  $mh: _marginValueRenderer($value, $sassyMarginHorizontal)
+  margin: $mv $mh $mv $mh

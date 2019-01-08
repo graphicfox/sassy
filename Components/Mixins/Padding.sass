@@ -1,0 +1,45 @@
+/**
+ * Created by Martin Neundorfer on 08.01.2019.
+ * For LABOR.digital
+ */
+@function _paddingValueRenderer($value, $baseValue)
+  @if $value == 0
+    @return 0
+  @else
+    @if unit($value) == ""
+      @return floor($baseValue * $value)
+    @else
+      @return $value
+
+// Default paddings
+// =====================================
+=pt($value: 1)
+  padding-top: _paddingValueRenderer($value, $sassyMarginVertical)
+
+=pr($value: 1)
+  padding-right: _paddingValueRenderer($value, $sassyMarginHorizontal)
+
+=pb($value: 1)
+  padding-bottom: _paddingValueRenderer($value, $sassyMarginVertical)
+
+=pl($value: 1)
+  padding-left: _paddingValueRenderer($value, $sassyMarginHorizontal)
+
+// Combined paddings
+// =====================================
+// Top + Bottom (Vertical)
+=pv($value: 1)
+  +pt($value)
+  +pb($value)
+
+// Left + Right (Horizontal)
+=ph($value: 1)
+  +pl($value)
+  +pr($value)
+
+// All paddings
+// =====================================
+=p($value:1)
+  $mv: _paddingValueRenderer($value, $sassyMarginVertical)
+  $mh: _paddingValueRenderer($value, $sassyMarginHorizontal)
+  padding: $mv $mh $mv $mh

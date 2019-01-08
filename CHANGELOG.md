@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+- Added mixins for padding and margin
+
+### Changed
+- Makes css class for the breakpoint bridge configurable
+
 ## [1.0.0] - 2018-12-20
 Initial commit
 
