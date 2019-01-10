@@ -1,0 +1,18 @@
+/**
+ * Created by Martin Neundorfer on 20.12.2018.
+ * For LABOR.digital
+ */
+
+// Build the css property
+$sassyBreakPointService: ""
+$sassyBreakPointService: $sassyBreakPointService + "xxs: #{$sassyBreakpointXxsMin}|#{$sassyBreakpointXxsMax}, "
+$sassyBreakPointService: $sassyBreakPointService + "xs: #{$sassyBreakpointXsMin}|#{$sassyBreakpointXsMax}, "
+$sassyBreakPointService: $sassyBreakPointService + "sm: #{$sassyBreakpointSmMin}|#{$sassyBreakpointSmMax}, "
+$sassyBreakPointService: $sassyBreakPointService + "md: #{$sassyBreakpointMdMin}|#{$sassyBreakpointMdMax}, "
+$sassyBreakPointService: $sassyBreakPointService + "lg: #{$sassyBreakpointLgMin}|#{$sassyBreakpointLgMax}, "
+$sassyBreakPointService: $sassyBreakPointService + "xl: #{$sassyBreakpointXlMin}|#{$sassyBreakpointXlMax}"
+
+// Build the class
+.#{$sassyBreakpointServiceClass}
+  display: none
+  font-family: $sassyBreakPointService

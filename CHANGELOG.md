@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Makes css class for the breakpoint bridge configurable
+- Renamed breakpointBridge to BreakpointService
 
 ## [1.0.0] - 2018-12-20
 Initial commit
