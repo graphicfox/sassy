@@ -1,0 +1,20 @@
+/**
+ * Created by Martin Neundorfer on 10.01.2019.
+ * For LABOR.digital
+ */
+
+=transition( $duration: 0.5s, $easing: linear, $what: all )
+  transition: all $duration $easing
+  @if $what != all
+    transition-property: unquote($what)
+
+=imageBg($bgImage: null, $type: cover)
+  background-repeat: no-repeat
+  background-clip: padding-box
+  background-size: $type
+  background-position: center center
+  @if $bgImage != null
+    background-image: url($bgImage)
+
+=proportionalContainer($width, $height)
+  padding-top: percentage(($height / $width) / (($height / $width) * 0 +1))

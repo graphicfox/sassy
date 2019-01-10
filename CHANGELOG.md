@@ -2,8 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+## [1.0.1] - 2019-01-10
 ### Added
 - Added mixins for padding and margin
+- Added some misc helpers from bootstrap-addons
+- Added flex mixins
+- Added spacer mixins
 
 ### Changed
 - Makes css class for the breakpoint bridge configurable
