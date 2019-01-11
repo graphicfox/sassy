@@ -3,7 +3,13 @@
  * For LABOR.digital
  */
 =st($spacerType: 1)
-  margin-top: nth($sassySpacerMultipliers, $spacerType) * $sassySpacerBase
+  @if length($sassySpacerMultipliers) < $spacerType
+    margin-top: #{$spacerType * 3 * $sassySpacerBase}
+  @else
+    margin-top: nth($sassySpacerMultipliers, $spacerType) * $sassySpacerBase
 
 =sb($spacerType: 1)
-  margin-bottom: nth($sassySpacerMultipliers, $spacerType) * $sassySpacerBase
+  @if length($sassySpacerMultipliers) < $spacerType
+    margin-bottom: #{$spacerType * 3 * $sassySpacerBase}
+  @else
+    margin-bottom: nth($sassySpacerMultipliers, $spacerType) * $sassySpacerBase

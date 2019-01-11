@@ -2,6 +2,11 @@
  * Created by Martin Neundorfer on 20.12.2018.
  * For LABOR.digital
  */
+@function sassyAutoGutterFallback($gutter, $fallback)
+  @if $gutter == auto
+    @return $fallback
+  @return $gutter
+
 /**
  * This function is used to parse a gutter definition (the same as a margin css-list)
  * and handle defaults for TRUE or FALSE
@@ -21,27 +26,28 @@
   $gl: 0px !default
   @if type-of($gutter) == "list"
     @if length($gutter) == 2
-      $gt: nth($gutter, 1) / 2
-      $gr: nth($gutter, 2) / 2
+      $gt: sassyAutoGutterFallback(nth($gutter, 1), $sgv) / 2
+      $gr: sassyAutoGutterFallback(nth($gutter, 2), $sgh) / 2
       $gb: $gt
       $gl: $gr
     @else if length($gutter) == 4
-      $gt: nth($gutter, 1) / 2
-      $gr: nth($gutter, 2) / 2
-      $gb: nth($gutter, 3) / 2
-      $gl: nth($gutter, 4) / 2
-  @else if $gutter == true
+      $gt: sassyAutoGutterFallback(nth($gutter, 1), $sgv) / 2
+      $gr: sassyAutoGutterFallback(nth($gutter, 2), $sgh) / 2
+      $gb: sassyAutoGutterFallback(nth($gutter, 3), $sgv) / 2
+      $gl: sassyAutoGutterFallback(nth($gutter, 4), $sgh) / 2
+  @else if $gutter == true or $gutter == auto
     $gt: $sgv / 2
     $gr: $sgh / 2
     $gb: $gt
     $gl: $gr
   @else if $gutter == false
   @else
-    $gt: $gutter / 2
+    $gt: sassyAutoGutterFallback($gutter, $sgv) / 2
     $gr: $gt
     $gb: $gt
     $gl: $gt
-  @return (gt: $gt, gr: $gr, gb: $gb, gl: $gt)
+
+  @return (gt: $gt, gr: $gr, gb: $gb, gl: $gl)
 
 /**
  * This mixin is used to render the order property to move
@@ -50,53 +56,37 @@
   -ms-flex-order: $order
   order: $order
 
-/*
- * A silent class which serves as base for all containers
-%sassyContainer
+/**
+ * A tiny helper to convert the target element into a responsive container
+=container()
   position: relative
   margin: 0 auto
   // The order is always XS -> XXS -> SM... Because XXS has to overrule the priority of XS!
   // XS (Both are active without breakpoint, because xs is the bootstrap standard...)
   width: $sassyContainerWidthXs
+  @if $sassyContainerWidthXs == 100%
+    padding: 0 #{$sassyGutterHorizontal / 2 }
   // XXS (XXS overrides XS because we think it is more important)
   +bpXxs
     width: $sassyContainerWidthXxs
+    @if $sassyContainerWidthXxs == 100%
+      padding: 0 #{$sassyGutterHorizontal / 2 }
   +bpSmAndBigger()
     width: $sassyContainerWidthSm
+    @if $sassyContainerWidthSm == 100%
+      padding: 0 #{$sassyGutterHorizontal / 2 }
   +bpMdAndBigger()
     width: $sassyContainerWidthMd
+    @if $sassyContainerWidthMd == 100%
+      padding: 0 #{$sassyGutterHorizontal / 2 }
   +bpLgAndBigger()
     width: $sassyContainerWidthLg
+    @if $sassyContainerWidthLg == 100%
+      padding: 0 #{$sassyGutterHorizontal / 2 }
   +bpXl()
     width: $sassyContainerWidthXl
-
-/**
- * A tiny helper to convert the target element into a responsive container
-=container()
-  @extend %sassyContainer
-
-/**
- * A silent class which serves as base for all grids so we can avoid duplicated css output
-%sassyGrid
-  position: relative
-  display: flex
-  flex-direction: row
-  flex-wrap: wrap
-  width: 100%
-  box-sizing: border-box
-
-  // Handle children
-  & > *
-    position: relative
-    box-sizing: content-box
-    flex-grow: 0
-    flex-shrink: 0
-
-    // Auto order
-    @if $sassyAutoOrder == true
-      @for $i from 1 through $sassyAutoOrderLength
-        &:nth-child(#{$i})
-          +gridItemOrder($i * 10)
+    @if $sassyContainerWidthXl == 100%
+      padding: 0 #{$sassyGutterHorizontal / 2 }
 
 /**
  * Creates a grid wrapper which can contain multiple grid items.
@@ -109,15 +99,34 @@
  *                 - hideCompensation:   By default all containers are set to "overflow:hidden" if you
  *                                       set this to FALSE the overflow keeps there
 =grid($options: ())
-  @extend %sassyGrid
+  position: relative
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  box-sizing: border-box
+
+  // Handle children
+  & > *
+    position: relative
+    box-sizing: content-box
+    flex-grow: 0
+    flex-shrink: 0
+
+    // Auto order
+    @if $sassyAutoOrder == true
+      +gridItemOrder(999999)
+      @for $i from 1 through $sassyAutoOrderLength
+        &:nth-child(#{$i})
+          +gridItemOrder($i * 10)
+
   // Prepare options
   $defaults: (gutterCompensation: true, hideCompensation: true)
   $options: map-merge($defaults, $options)
 
   // Handle gutter
   $g: sassyParseGutter(map-get($options, gutterCompensation))
-  margin-top: -(map-get($g, gt))
-  margin-bottom: -(map-get($g, gb))
+  margin: #{-(map-get($g, gt)) + 0px} #{-(map-get($g, gr)) + 0px} #{-(map-get($g, gb)) + 0px} #{-(map-get($g, gl)) + 0px}
+  width: calc(100% + #{map-get($g, gl) + map-get($g, gr) + 0px})
 
   // Handle overflow
   @if map-get($options, hideCompensation) == true
@@ -134,15 +143,27 @@
  *                - gutter: A valid gutter definition for sassyParseGutter() to change/disable
  *                          the gutter of this child
 =gridItem($span: $sassyGridColumns, $options: ())
-  // Prepare options
-  $defaults: (of: $sassyGridColumns, order: -1, gutter: true)
+  // Prepare options and gutter
+  $defaults: (of: $sassyGridColumns, order: -1, gutter: true, offset: off)
   $options: map-merge($defaults, $options)
-
-  // Handle gutter
   $g: sassyParseGutter(map-get($options, gutter))
-  flex-basis: calc(#{percentage($span / map-get($options, of))} - #{(map-get($g, gl) + map-get($g, gr))})
-  padding: map-get($g, gt) map-get($g, gr) map-get($g, gb) map-get($g, gl)
 
-  // Handle offset
-  @if map-get($options, order) > 0
-    +gridItemOrder(map-get($options, order))
+  @if $span == off
+    flex-basis: auto
+    margin-left: 0
+
+  @else
+    flex-basis: calc(#{percentage($span / map-get($options, of))} - #{(map-get($g, gl) + map-get($g, gr) + 0px)})
+    padding: map-get($g, gt) map-get($g, gr) map-get($g, gb) map-get($g, gl)
+    overflow: inherit
+
+    // Handle offset
+    @if map-get($options, offset) != off
+      @if map-get($options, offset) != 0
+        margin-left: calc(#{percentage(1 / map-get($options, of))} * #{map-get($options, offset)})
+      @else if map-get($options, offset) == 0
+        margin-left: 0
+
+    // Handle order
+    @if map-get($options, order) > 0
+      +gridItemOrder(map-get($options, order))

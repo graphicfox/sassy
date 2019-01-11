@@ -2,6 +2,22 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+## [1.0.2] - 2019-01-11
+### Added
+- Added fallback when spacers are used out of their configured multiplier bounds
+- Added "auto" value for grid gutter definitions
+- Added "offset" option to gridItem()
+
+### Changed
+- Makes headline elements "display: block" again in the cssReset
+- Added p tags to the list of "display: inline-block" elements in the cssReset
+- Changed grid container to render a gutter left and right if the width is 100%
+- Grid items can now be set to "off" to disable the handling as flex element
+
+### Fixed
+- Fixed an issue with the grid item order 
+- Makes sure that all grid values will be calculated as pixels to prevent errors
+
 ## [1.0.1] - 2019-01-10
 ### Added
 - Added mixins for padding and margin
