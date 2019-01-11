@@ -1,6 +1,6 @@
 {
   "name": "@labor/sassy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A library of general purpose sass/scss mixins like breakpoints, margins, spacers and so on...",
   "main": "index.js",
   "scripts": {
