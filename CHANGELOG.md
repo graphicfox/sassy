@@ -1,5 +1,21 @@
-# Changelog
-All notable changes to this project will be documented in this file.
+# Change Log
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+# [1.1.0](https://bitbucket.org/labor-digital/labor-sass-sassy/branches/compare/v1.1.0%0Dv1.0.2#diff) (2019-03-27)
+
+
+### Bug Fixes
+
+* fix proportionalContainer padding-top miscalculation ([9ae88de](https://bitbucket.org/labor-digital/labor-sass-sassy/commits/9ae88de))
+* fix that $margin is no longer the half of $sassyMargin ([d25b554](https://bitbucket.org/labor-digital/labor-sass-sassy/commits/d25b554))
+
+
+### Features
+
+* a, button, input[type=submit] are now inline elements by default ([de3428a](https://bitbucket.org/labor-digital/labor-sass-sassy/commits/de3428a))
+
+
 
 ## [1.0.2] - 2019-01-11
 ### Added
