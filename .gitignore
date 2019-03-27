@@ -1,3 +1,9 @@
 node_modules
-.idea
 !.keep
+
+# IDEA Code Style
+.idea/*
+!.idea/copyright/
+!.idea/copyright/*
+!.idea/codeStyles/
+!.idea/codeStyles/*
