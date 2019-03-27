@@ -1,7 +1,6 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
 ## [1.0.2] - 2019-01-11
 ### Added
 - Added fallback when spacers are used out of their configured multiplier bounds
