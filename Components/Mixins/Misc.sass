@@ -18,3 +18,12 @@
 
 =proportionalContainer($width, $height)
   padding-top: percentage(($height / $width))
+
+=printOnly()
+  @media print
+    @content
+
+=screenOnly()
+  @media screen
+    @content
+    

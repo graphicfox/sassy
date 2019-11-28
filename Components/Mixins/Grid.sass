@@ -52,9 +52,12 @@
 /**
  * This mixin is used to render the order property to move
  * flexbox children around
-=gridItemOrder($order)
+=gridItemOrder($order, $override: false)
   -ms-flex-order: $order
   order: $order
+  @if $override
+    -ms-flex-order: $order !important
+    order: $order !important
 
 /**
  * A tiny helper to convert the target element into a responsive container
@@ -166,4 +169,4 @@
 
     // Handle order
     @if map-get($options, order) > 0
-      +gridItemOrder(map-get($options, order))
+      +gridItemOrder(map-get($options, order), true)
