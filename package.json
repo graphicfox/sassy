@@ -1,6 +1,6 @@
 {
   "name": "@neunerlei/sassy",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A library of general purpose sass/scss mixins like breakpoints, margins, spacers and more",
   "repository": {
     "type": "git",
