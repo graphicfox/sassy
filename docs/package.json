@@ -20,43 +20,53 @@
 		"apps": [
 			{
 				"entry": "./.vuepress/public/examples/breakpoints/styles.sass",
-				"output": "./.vuepress/public/examples/breakpoints/styles.js"
+				"output": "./.vuepress/public/examples/breakpoints/styles.js",
+				"keepOutputDirectory": true
 			},
 			{
 				"entry": "./.vuepress/public/examples/container/styles.sass",
-				"output": "./.vuepress/public/examples/container/styles.js"
+				"output": "./.vuepress/public/examples/container/styles.js",
+				"keepOutputDirectory": true
 			},
 			{
 				"entry": "./.vuepress/public/examples/gridBasic/styles.sass",
-				"output": "./.vuepress/public/examples/gridBasic/styles.js"
+				"output": "./.vuepress/public/examples/gridBasic/styles.js",
+				"keepOutputDirectory": true
 			},
 			{
 				"entry": "./.vuepress/public/examples/gridResponsive/styles.sass",
-				"output": "./.vuepress/public/examples/gridResponsive/styles.js"
+				"output": "./.vuepress/public/examples/gridResponsive/styles.js",
+				"keepOutputDirectory": true
 			},
 			{
 				"entry": "./.vuepress/public/examples/gridVerticalGutter/styles.sass",
-				"output": "./.vuepress/public/examples/gridVerticalGutter/styles.js"
+				"output": "./.vuepress/public/examples/gridVerticalGutter/styles.js",
+				"keepOutputDirectory": true
 			},
 			{
 				"entry": "./.vuepress/public/examples/gridOrder/styles.sass",
-				"output": "./.vuepress/public/examples/gridOrder/styles.js"
+				"output": "./.vuepress/public/examples/gridOrder/styles.js",
+				"keepOutputDirectory": true
 			},
 			{
 				"entry": "./.vuepress/public/examples/gridCustomCols/styles.sass",
-				"output": "./.vuepress/public/examples/gridCustomCols/styles.js"
+				"output": "./.vuepress/public/examples/gridCustomCols/styles.js",
+				"keepOutputDirectory": true
 			},
 			{
 				"entry": "./.vuepress/public/examples/gridOffset/styles.sass",
-				"output": "./.vuepress/public/examples/gridOffset/styles.js"
+				"output": "./.vuepress/public/examples/gridOffset/styles.js",
+				"keepOutputDirectory": true
 			},
 			{
 				"entry": "./.vuepress/public/examples/gridGutterConfig/styles.sass",
-				"output": "./.vuepress/public/examples/gridGutterConfig/styles.js"
+				"output": "./.vuepress/public/examples/gridGutterConfig/styles.js",
+				"keepOutputDirectory": true
 			},
 			{
 				"entry": "./.vuepress/public/examples/configuration/styles.sass",
-				"output": "./.vuepress/public/examples/configuration/styles.js"
+				"output": "./.vuepress/public/examples/configuration/styles.js",
+				"keepOutputDirectory": true
 			}
 		]
 	}
