@@ -1,6 +1,20 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [2.0.0](https://github.com/Neunerlei/sassy/compare/v1.1.0...v2.0.0) (2020-03-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* the grid syntax was changed in comparison with earlier
+versions. Therefore this version will break existing projects that use
+the grid mixins
+
+### Features
+
+* add some minor new features + fix issue with gird item ordering ([e364cb1](https://github.com/Neunerlei/sassy/commit/e364cb15c4f9411e4dcfe9adbf084dcd4036fc8f))
+* consolidation + documentation before publishing the package ([3431eff](https://github.com/Neunerlei/sassy/commit/3431eff5ce41300a3bd3d344ea39f7731db1034f))
 
 # [1.1.0](https://bitbucket.org/labor-digital/labor-sass-sassy/branches/compare/v1.1.0%0Dv1.0.2#diff) (2019-03-27)
 
