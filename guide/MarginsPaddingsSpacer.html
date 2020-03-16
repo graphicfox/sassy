@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Margins, Paddings &amp; Spacer | Sassy - A SASS library</title>
+    <meta name="description" content="">
+    <meta name="generator" content="VuePress 1.3.1">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.c2bd1792.css" as="style"><link rel="preload" href="/assets/js/app.09508cbb.js" as="script"><link rel="preload" href="/assets/js/2.588c7243.js" as="script"><link rel="preload" href="/assets/js/10.bbcea3a5.js" as="script"><link rel="prefetch" href="/assets/js/11.ad312e89.js"><link rel="prefetch" href="/assets/js/12.0c1b38da.js"><link rel="prefetch" href="/assets/js/3.f2662b9b.js"><link rel="prefetch" href="/assets/js/4.550347ad.js"><link rel="prefetch" href="/assets/js/5.f1c2ae01.js"><link rel="prefetch" href="/assets/js/6.63c639f0.js"><link rel="prefetch" href="/assets/js/7.58e360e1.js"><link rel="prefetch" href="/assets/js/8.1e84f11a.js"><link rel="prefetch" href="/assets/js/9.5ec716ef.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c2bd1792.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Sassy - A SASS library</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/" class="sidebar-link">Sassy</a></li><li><a href="/guide/Configuration.html" class="sidebar-link">Configuration</a></li><li><a href="/guide/Breakpoints.html" class="sidebar-link">Breakpoints</a></li><li><a href="/guide/Grid.html" class="sidebar-link">Grid</a></li><li><a href="/guide/MarginsPaddingsSpacer.html" class="active sidebar-link">Margins, Paddings &amp; Spacer</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/MarginsPaddingsSpacer.html#values" class="sidebar-link">Values</a></li><li class="sidebar-sub-header"><a href="/guide/MarginsPaddingsSpacer.html#margins" class="sidebar-link">Margins</a></li><li class="sidebar-sub-header"><a href="/guide/MarginsPaddingsSpacer.html#paddings" class="sidebar-link">Paddings</a></li><li class="sidebar-sub-header"><a href="/guide/MarginsPaddingsSpacer.html#spacers" class="sidebar-link">Spacers</a></li></ul></li><li><a href="/guide/Misc.html" class="sidebar-link">Miscellaneous</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="margins-paddings-spacer"><a href="#margins-paddings-spacer" class="header-anchor">#</a> Margins, Paddings &amp; Spacer</h1> <p>In most of the projects I'm working on there is a consistent design system, meaning that margins and paddings are always following a ruleset.
+Your margins are either 15px or 30px or 45px. Your paddings are 5px or 10px or 15px and so on.
+Thats where the margin and padding mixins are used.</p> <p>They are designed to work with a system where you have spacings that are always a multitude of a given value.
+Therefore you can simply configure the global, default margin and then tell the mixin: &quot;hey give me 2 times the default value&quot;.</p> <h2 id="values"><a href="#values" class="header-anchor">#</a> Values</h2> <p>As stated above you can pass any numeric value to the following mixins.
+If the value <strong>has a unit</strong> (like px or %) it will simply be passed to the matching property.
+if the value <strong>does not have a unit</strong> it will be used as a multiplier for the default $margin value.
+If you don't pass any value into the mixin we assume you just want to put the default value there</p> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>Both <code>$sassyMargin</code> and <code>$sassyMargin</code> can be overwritten by the &quot;horizontal&quot; and &quot;vertical&quot; options if you want
+another margin horizontally than you want vertically.</p></div> <h2 id="margins"><a href="#margins" class="header-anchor">#</a> Margins</h2> <p>You can use the margin mixins in the same logic you would use in your default css.
+All those mixins depend on the configured <code>$sassyMargin</code> value. By default the <code>$sassyMargin</code> is set to 15px</p> <div class="language-sass extra-class"><pre class="language-sass"><code><span class="token selector">.element</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>m() // Set the margin on all sides</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>mt() // Margin top</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>mr() // Margin right</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>mb() // Margin bottom</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>ml() // Margin left</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>mh() // Horizontal Margin (left and right)</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>mv() // Vertical Margin (top and bottom)</span>
+</code></pre></div><h2 id="paddings"><a href="#paddings" class="header-anchor">#</a> Paddings</h2> <p>Paddings work similar to margins but have <strong>one major difference</strong>: By default all paddings depend
+on the configured <code>$sassyPadding</code> option. This option is by default a thrid of the <code>$sassyMargin</code> value.
+So with the default <code>$sassyMargin</code> of 15 px the <code>$sassyPadding</code> will be set to 5px.</p> <div class="language-sass extra-class"><pre class="language-sass"><code><span class="token selector">.element</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>p() // Set the padding on all sides</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>pt() // Padding top</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>pr() // Padding right</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>pb() // Padding bottom</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>pl() // Padding left</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>ph() // Horizontal Padding (left and right)</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>pv() // Vertical Padding (top and bottom)</span>
+</code></pre></div><h2 id="spacers"><a href="#spacers" class="header-anchor">#</a> Spacers</h2> <p>Spacers or space between elements are a recurring theme in most designs.
+Sassy's spacers are designed to keep spacer elements based on your design system.
+For that you have a <code>$sassySpacerBase</code> base value (set to <code>$sassyMargin</code> by default) that
+will be multiplied by a given multiplier.</p> <p>To keep all spacers equal sassy works with a list of configurable multipliers (<code>$sassySpacerMultipliers</code>).
+The default list is: 2, 4, 6 and 8. When you define a spacer you can simply pass the id of your spacer (1-4) in a mixin
+and the multiplication will automatically be applied.</p> <p>If you pass a value that exceeds the list of predefined spacers it will be applied as multiplier instead.
+(e.g. if you pass 6 or 7 it exceeds the default list of 4 and therefore the spacer) will be $sassySpacerBase * 6 or 7.</p> <div class="language-sass extra-class"><pre class="language-sass"><code><span class="token selector">.element</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>st() // Spacer to the top</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>sb() // Spacer to the bottom</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/guide/Grid.html" class="prev">
+        Grid
+      </a></span> <span class="next"><a href="/guide/Misc.html">
+        Miscellaneous
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.09508cbb.js" defer></script><script src="/assets/js/2.588c7243.js" defer></script><script src="/assets/js/10.bbcea3a5.js" defer></script>
+  </body>
+</html>

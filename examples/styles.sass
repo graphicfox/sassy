@@ -1,0 +1,39 @@
+/*!
+ / Copyright 2020 LABOR.digital
+ /
+ / Licensed under the Apache License, Version 2.0 (the "License");
+ / you may not use this file except in compliance with the License.
+ / You may obtain a copy of the License at
+ /
+ /     http://www.apache.org/licenses/LICENSE-2.0
+ /
+ / Unless required by applicable law or agreed to in writing, software
+ / distributed under the License is distributed on an "AS IS" BASIS,
+ / WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ / See the License for the specific language governing permissions and
+ / limitations under the License.
+ /
+ / Last modified: 2020.03.13 at 19:26
+ /
+$colorHighlight: #3eaf7c
+
+.example
+  +mt
+  background-color: fade-out($colorHighlight, 0.8)
+
+  &__content
+    display: block
+    //outline: 1px solid fade-out($colorHighlight, 0.8)
+    background: repeating-linear-gradient(45deg, fade-out($colorHighlight, 0.6), fade-out($colorHighlight, 0.6) 5px, fade-out($colorHighlight, 0.8) 5px, fade-out($colorHighlight, 0.8) 15px)
+    color: darken($colorHighlight, 10%)
+    text-shadow: 0 0 15px #fff
+    width: 100%
+    +pv()
+    +ph(5px)
+    +flexCenter
+    
+    &:hover
+      outline: 1px solid fade-out($colorHighlight, 0.6)
+      
+    &--high
+      height: 150px

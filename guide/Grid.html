@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Grid | Sassy - A SASS library</title>
+    <meta name="description" content="">
+    <meta name="generator" content="VuePress 1.3.1">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.c2bd1792.css" as="style"><link rel="preload" href="/assets/js/app.09508cbb.js" as="script"><link rel="preload" href="/assets/js/2.588c7243.js" as="script"><link rel="preload" href="/assets/js/9.5ec716ef.js" as="script"><link rel="preload" href="/assets/js/3.f2662b9b.js" as="script"><link rel="prefetch" href="/assets/js/10.bbcea3a5.js"><link rel="prefetch" href="/assets/js/11.ad312e89.js"><link rel="prefetch" href="/assets/js/12.0c1b38da.js"><link rel="prefetch" href="/assets/js/4.550347ad.js"><link rel="prefetch" href="/assets/js/5.f1c2ae01.js"><link rel="prefetch" href="/assets/js/6.63c639f0.js"><link rel="prefetch" href="/assets/js/7.58e360e1.js"><link rel="prefetch" href="/assets/js/8.1e84f11a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c2bd1792.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Sassy - A SASS library</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/" class="sidebar-link">Sassy</a></li><li><a href="/guide/Configuration.html" class="sidebar-link">Configuration</a></li><li><a href="/guide/Breakpoints.html" class="sidebar-link">Breakpoints</a></li><li><a href="/guide/Grid.html" class="active sidebar-link">Grid</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/Grid.html#mixins" class="sidebar-link">Mixins</a></li><li class="sidebar-sub-header"><a href="/guide/Grid.html#container-2" class="sidebar-link">Container</a></li><li class="sidebar-sub-header"><a href="/guide/Grid.html#basic-grid" class="sidebar-link">Basic Grid</a></li><li class="sidebar-sub-header"><a href="/guide/Grid.html#responsive-grid" class="sidebar-link">Responsive Grid</a></li><li class="sidebar-sub-header"><a href="/guide/Grid.html#grid-with-vertical-gutter" class="sidebar-link">Grid with vertical gutter</a></li><li class="sidebar-sub-header"><a href="/guide/Grid.html#grid-item-order" class="sidebar-link">Grid Item Order</a></li><li class="sidebar-sub-header"><a href="/guide/Grid.html#grids-with-a-custom-number-of-column" class="sidebar-link">Grids with a custom number of column</a></li><li class="sidebar-sub-header"><a href="/guide/Grid.html#grid-item-offset" class="sidebar-link">Grid Item Offset</a></li><li class="sidebar-sub-header"><a href="/guide/Grid.html#gutter-configuration" class="sidebar-link">Gutter Configuration</a></li></ul></li><li><a href="/guide/MarginsPaddingsSpacer.html" class="sidebar-link">Margins, Paddings &amp; Spacer</a></li><li><a href="/guide/Misc.html" class="sidebar-link">Miscellaneous</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="grid"><a href="#grid" class="header-anchor">#</a> Grid</h1> <p>The grid system is one of the major features of the sassy library. As so many others it consists (by default) on a 12 column layout grid. Every grid column is separated from other columns using a gutter.
+The items in your grid can but don't have to be wrapped into a container that centers your content on the screen.</p> <p>But why, if there are 14 bajilion other grids that do the same stuff you might ask. Because the sassy grid does not add a single css class, I say. The sassy grid consists of five sass mixins you can use in any of your application's sass code.
+So you don't end up with huge, unreadable &quot;class&quot; attributes and workarounds to apply the existing css to your requirements. The mixins will follow your lead and your coding guideline.</p> <p>The grid is completely based on the <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener noreferrer">css flexbox layout<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>,
+because <a href="https://css-tricks.com/snippets/css/complete-guide-grid/" target="_blank" rel="noopener noreferrer">css grids<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> are still too unreliable for my liking 😦</p> <p>Contrary to the &quot;bootstrap&quot; approach where you have a &quot;row&quot; that contains columns you simply have a &quot;grid&quot; and &quot;items&quot; while using the sassy grid.
+A grid can contain any number of items that define their &quot;span&quot; from 1 to 12.</p> <h2 id="mixins"><a href="#mixins" class="header-anchor">#</a> Mixins</h2> <h4 id="container"><a href="#container" class="header-anchor">#</a> container()</h4> <p>A helper to convert the target element into a responsive container.
+The content will be always centered on the page. The width of the content area can be configured globally.
+If you need a special container size you can also override the global values by using the $override parameter</p> <details class="custom-block details"><summary>Arguments</summary> <ul><li>$override A map containing the overrides for one or more breakpoints (xxs: 120px, xs: 260px,...)</li></ul></details> <h4 id="grid-2"><a href="#grid-2" class="header-anchor">#</a> grid()</h4> <p>Creates a grid wrapper which can contain multiple grid items.
+NOTE: You should NOT place items in this grid that have the +gridItemV mixin applied to them</p> <details class="custom-block details"><summary>Arguments</summary> <ul><li>$gutterCompensation A valid gutter definition for sassyParseGutter() to change/disable
+the automatic compensation of this grid's first and last rows of items. This is &quot;auto&quot; by default.</li></ul></details> <h4 id="griditem"><a href="#griditem" class="header-anchor">#</a> gridItem()</h4> <p>Defines the element as a child of a default sassy grid.
+NOTE: Items of this kind should ONLY be added to a grid that has the +gridItem mixin AND NOT the +gridItemV mixin applied to it</p> <details class="custom-block details"><summary>Arguments</summary> <ul><li>$span The range this column should take up in its width.
+(Range: 1 - $sassyGridColumns / the value of options.of)</li> <li>$options Can take additional options for this item
+<ul><li>of:     Can be used to override the default $sassyGridColumns value for this item</li> <li>order:  The numeric order of this item in the element list</li> <li>gutter: A valid gutter definition for sassyParseGutter() to change/disable
+the gutter of this child</li> <li>offset: The column offset to the item that comes before this item</li> <li>offsetAfter: The same as offset but applies to the item after this item</li> <li>usePadding: By default the margin is used to create the gutters.
+If this conflicts with your use-case set this to true and the padding is used instead.</li></ul></li></ul></details> <h4 id="gridv"><a href="#gridv" class="header-anchor">#</a> gridV()</h4> <p>Creates a grid wrapper which can contain multiple grid items.
+The difference to grid() is, that the wrapper compensates the vertical gutter for the first and
+the last row of the grid and not only left and right.
+NOTE: You should ONLY place items in this grid that have have the +gridItemV mixin applied to them.</p> <details class="custom-block details"><summary>Arguments</summary> <ul><li>$gutterCompensation A valid gutter definition for sassyParseGutter() to change/disable
+the automatic compensation of this grid's first and last rows of items. This is &quot;auto&quot; by default.</li></ul></details> <h4 id="griditemv"><a href="#griditemv" class="header-anchor">#</a> gridItemV()</h4> <p>Defines the element as a child of a sassy grid with vertical gutter.
+NOTE: Items of this kind should ONLY be added to a grid that has the +gridItemV applied to it</p> <details class="custom-block details"><summary>Arguments</summary> <ul><li>$span The range this column should take up in its width.
+(Range: 1 - $sassyGridColumns / the value of options.of)</li> <li>$options Can take additional options for this item
+<ul><li>of:     Can be used to override the default $sassyGridColumns value for this item</li> <li>order:  The numeric order of this item in the element list</li> <li>gutter: A valid gutter definition for sassyParseGutter() to change/disable
+the gutter of this child</li> <li>offset: The column offset to the item that comes before this item</li> <li>offsetAfter: The same as offset but applies to the item after this item</li> <li>usePadding: By default the margin is used to create the gutters.
+If this conflicts with your use-case set this to true and the padding is used instead.</li></ul></li></ul></details> <h2 id="container-2"><a href="#container-2" class="header-anchor">#</a> Container</h2> <p>A container is the main content area of your page.
+It is centered horizontally in the viewport (or the parent container) and has a breakpoint aware width you can
+configure in your configuration file if you wish to.</p> <div class="preview"><div class="preview__iframeContainer" style="height:180px;"><div class="resizable active resizable vdr" style="position:absolute;top:0px;left:0px;width:0px;height:0px;z-index:auto;user-select:auto;moz-user-select:auto;webkit-user-select:auto;ms-user-select:auto;"><div class="handle handle-mr" style="display:block;"></div><iframe src="/examples/container" style="height:180px;"></iframe></div></div> <a href="/examples/container" target="_blank" class="preview__link">Open the example in a new tab</a></div> <details class="custom-block details"><summary>CODE</summary> <div class="language-sass extra-class"><pre class="language-sass"><code><span class="token selector">.container</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>container</span>
+</code></pre></div><div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>container<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>The responsive container<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></details> <h2 id="basic-grid"><a href="#basic-grid" class="header-anchor">#</a> Basic Grid</h2> <p>A grid is the outer wrapper for any number of grid items, it CAN but DOES NOT HAVE TO be placed inside a container.
+By default a grid only has a horizontal gutter which can be configured using the config options.</p> <div class="preview"><div class="preview__iframeContainer" style="height:180px;"><div class="resizable active resizable vdr" style="position:absolute;top:0px;left:0px;width:0px;height:0px;z-index:auto;user-select:auto;moz-user-select:auto;webkit-user-select:auto;ms-user-select:auto;"><div class="handle handle-mr" style="display:block;"></div><iframe src="/examples/gridBasic" style="height:180px;"></iframe></div></div> <a href="/examples/gridBasic" target="_blank" class="preview__link">Open the example in a new tab</a></div> <details class="custom-block details"><summary>CODE</summary> <div class="language-sass extra-class"><pre class="language-sass"><code><span class="token selector">.container</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>container</span>
+  
+<span class="token comment">// Create a grid, a grid is the outer wrapper for any number of grid items.</span>
+<span class="token comment">// A grid CAN but DOES NOT HAVE TO be placed inside a container</span>
+<span class="token selector">.grid</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>grid()</span>
+
+<span class="token comment">// Similar to bootstrap the sassy grid is by default</span>
+<span class="token comment">// split into 12 &quot;columns&quot; with margins &quot;gutter&quot; between them. </span>
+<span class="token comment">// Without any options the item assumes it should</span>
+<span class="token comment">// take up all 12 columns</span>
+<span class="token selector">.fullWidthItem</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>gridItem(12)</span>
+
+<span class="token comment">// You can define the number of columns a single item should </span>
+<span class="token comment">// take up using the first option</span>
+<span class="token selector">.splitLeftItem</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>gridItem(8)</span>
+
+<span class="token comment">// To fill up the row of 12 columns we need another </span>
+<span class="token comment">// item with 4 additional columns</span>
+<span class="token selector">.splitRightItem</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>gridItem(4)</span>
+</code></pre></div><div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>container<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>grid<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>fullWidthItem<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Full width<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>splitLeftItem<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Left<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>splitRightItem<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Right<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></details> <h2 id="responsive-grid"><a href="#responsive-grid" class="header-anchor">#</a> Responsive Grid</h2> <p>When you are working responsively you need to modify the number of (columns) that your items take up for on different breakpoints.
+This is where the breakpoint mixin of sassy come in handy and the strengths of SASS
+can really shine. In this example we have a three column grid,
+that will break into lines when the breakpoint is XS and smaller.</p> <div class="preview"><div class="preview__iframeContainer" style="height:180px;"><div class="resizable active resizable vdr" style="position:absolute;top:0px;left:0px;width:0px;height:0px;z-index:auto;user-select:auto;moz-user-select:auto;webkit-user-select:auto;ms-user-select:auto;"><div class="handle handle-mr" style="display:block;"></div><iframe src="/examples/gridResponsive" style="height:180px;"></iframe></div></div> <a href="/examples/gridResponsive" target="_blank" class="preview__link">Open the example in a new tab</a></div> <details class="custom-block details"><summary>CODE</summary> <div class="language-sass extra-class"><pre class="language-sass"><code><span class="token selector">.container</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>container</span>
+
+<span class="token selector">.grid</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>grid()</span>
+
+<span class="token comment">// Our item has 4 columns by default but has 12 columns on the breakpoint </span>
+<span class="token comment">// XS and smaller</span>
+<span class="token selector">.item</span>
+  <span class="token comment">// Define the default state of your item</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>gridItem(4)</span>
+  
+<span class="token atrule-line">  <span class="token atrule">+</span>bpXsAndSmaller</span>
+    <span class="token comment">// Define the state if the item is rendered on breakpoint XS or smaller (XXS)</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridItem(12)</span>
+</code></pre></div><div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>container<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>grid<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>6<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></details> <h2 id="grid-with-vertical-gutter"><a href="#grid-with-vertical-gutter" class="header-anchor">#</a> Grid with vertical gutter</h2> <p>For the most of the daily layout work it is enough to have items with a horizontal gutter.
+But sometimes you want a grid that handles the vertical gutter for you. The Sassy grid comes with
+support for vertical gutter build in. If not configured different both the horizontal and vertical
+gutter have the same size between elements.</p> <p>To create a grid with vertical gutter simply use the gridV() and gridItemV() mixins instead of the default ones.
+The result is a grid like the one below. Note how the grid automatically compensates for the vertical gutter of the
+first and the last row in your grid.</p> <div class="preview"><div class="preview__iframeContainer" style="height:180px;"><div class="resizable active resizable vdr" style="position:absolute;top:0px;left:0px;width:0px;height:0px;z-index:auto;user-select:auto;moz-user-select:auto;webkit-user-select:auto;ms-user-select:auto;"><div class="handle handle-mr" style="display:block;"></div><iframe src="/examples/gridVerticalGutter" style="height:180px;"></iframe></div></div> <a href="/examples/gridVerticalGutter" target="_blank" class="preview__link">Open the example in a new tab</a></div> <details class="custom-block details"><summary>CODE</summary> <div class="language-sass extra-class"><pre class="language-sass"><code><span class="token selector">.container</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>container</span>
+
+<span class="token selector">.grid</span>
+  <span class="token comment">// We use gridV here to let the grid know that it should </span>
+  <span class="token comment">// compensate for the vertical gutter</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>gridV()</span>
+
+<span class="token selector">.item</span>
+  <span class="token comment">// You need to define your items to have a vertical gutter by using </span>
+  <span class="token comment">// the gridItemV mixin instead of the gridItem mixin. </span>
+  <span class="token comment">// The options are identical for gridItemV and gridItem.</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>gridItemV(6)</span>
+  
+  <span class="token comment">// This works for responsive grids as well</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>bpXsAndSmaller</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridItemV(12)</span>
+</code></pre></div><div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>container<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>grid<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></details> <h2 id="grid-item-order"><a href="#grid-item-order" class="header-anchor">#</a> Grid Item Order</h2> <p>Sometimes you want to reorder the items in your grid depending on your breakpoint,
+a filter or other means. In that case you can use the build in &quot;order&quot; feature
+that comes with flexbox and is integrated into sassy's grid system.</p> <p>By default the first four items in any grid will be automatically defined
+with the order value of 10, 20, 30 and 40. You can change the number of items
+to automatically sort via the configuration.</p> <p>You can also manually apply an order while you define a grid item or by using
+the gridItemOrder() mixin.</p> <p>In the example below you will see that the items are in order 1,2,3 even
+if they are defined in reverse in the HTML markup.</p> <div class="preview"><div class="preview__iframeContainer" style="height:180px;"><div class="resizable active resizable vdr" style="position:absolute;top:0px;left:0px;width:0px;height:0px;z-index:auto;user-select:auto;moz-user-select:auto;webkit-user-select:auto;ms-user-select:auto;"><div class="handle handle-mr" style="display:block;"></div><iframe src="/examples/gridOrder" style="height:180px;"></iframe></div></div> <a href="/examples/gridOrder" target="_blank" class="preview__link">Open the example in a new tab</a></div> <details class="custom-block details"><summary>CODE</summary> <div class="language-sass extra-class"><pre class="language-sass"><code><span class="token selector">.container</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>container</span>
+
+<span class="token selector">.grid</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>grid()</span>
+
+<span class="token selector">.item</span>
+  <span class="token comment">// By default the first four items will be automatically</span>
+  <span class="token comment">// ordered in every grid you create (you can change or</span>
+  <span class="token comment">// disable this via the configuration)</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>gridItem(4)</span>
+
+  <span class="token selector">&amp;--first</span>
+    <span class="token comment">// You can set the order of an item using the gridItem() mixin...</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridItem(4, (order: 1))</span>
+
+  <span class="token selector">&amp;--second</span>
+    <span class="token comment">// ... or you can use the gridItemOrder() mixin</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridItemOrder(2)</span>
+</code></pre></div><div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>container<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>grid<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item item--second<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item item--first<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></details> <h2 id="grids-with-a-custom-number-of-column"><a href="#grids-with-a-custom-number-of-column" class="header-anchor">#</a> Grids with a custom number of column</h2> <p>Most of the grids out there in the interwebs are static; meaning you have a given number of columns in any grid you create on your page.
+However sometimes your design contains 5 columns what to do about that. Sometimes you have a complete page that works with a three column layout,
+wouldn't it be convenient to tell your grid you want 1 of 3 or 1 of 5 columns? The Sassy grid has you covered.
+Every item can be given the &quot;of&quot; option to tell it how many columns there are in a row. You can even mix and match them in a single grid.</p> <div class="preview"><div class="preview__iframeContainer" style="height:180px;"><div class="resizable active resizable vdr" style="position:absolute;top:0px;left:0px;width:0px;height:0px;z-index:auto;user-select:auto;moz-user-select:auto;webkit-user-select:auto;ms-user-select:auto;"><div class="handle handle-mr" style="display:block;"></div><iframe src="/examples/gridCustomCols" style="height:180px;"></iframe></div></div> <a href="/examples/gridCustomCols" target="_blank" class="preview__link">Open the example in a new tab</a></div> <details class="custom-block details"><summary>CODE</summary> <div class="language-sass extra-class"><pre class="language-sass"><code><span class="token selector">.container</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>container</span>
+
+<span class="token selector">.grid</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>grid()</span>
+  
+<span class="token comment">// The 12 columns in a layout are configurable on a project level using the config options.</span>
+<span class="token comment">// However you can modify the number of expected columns in a row using the &quot;of&quot; option in your item</span>
+<span class="token selector">.item</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>gridItem(1, (of: 2))</span>
+
+<span class="token selector">.itemThird</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>gridItem(1, (of: 3))</span>
+
+<span class="token selector">.itemFifth</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>gridItem(1, (of: 5))</span>
+</code></pre></div><div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>container<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>grid<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>itemThird<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>itemThird<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>itemThird<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>itemFifth<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>6<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>itemFifth<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>7<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>itemFifth<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>itemFifth<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>9<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>itemFifth<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>10<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></details> <h2 id="grid-item-offset"><a href="#grid-item-offset" class="header-anchor">#</a> Grid Item Offset</h2> <p>When you want an empty space between two grid items (horizontally) you can use offsets.
+Offsets are defined as an option on your gridItem() mixin. You can add an offset before
+an item (offset) or after an item (offsetAfter). The offset value is defined the same way as
+you define the span of your grid item.</p> <div class="preview"><div class="preview__iframeContainer" style="height:150px;"><div class="resizable active resizable vdr" style="position:absolute;top:0px;left:0px;width:0px;height:0px;z-index:auto;user-select:auto;moz-user-select:auto;webkit-user-select:auto;ms-user-select:auto;"><div class="handle handle-mr" style="display:block;"></div><iframe src="/examples/gridOffset" style="height:150px;"></iframe></div></div> <a href="/examples/gridOffset" target="_blank" class="preview__link">Open the example in a new tab</a></div> <details class="custom-block details"><summary>CODE</summary> <div class="language-sass extra-class"><pre class="language-sass"><code><span class="token selector">.container</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>container</span>
+
+<span class="token selector">.grid</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>grid()</span>
+
+<span class="token selector">.item</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>gridItem(4)</span>
+  
+  <span class="token selector">&amp;--offsetBefore</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridItem(4, (offset: 4))</span>
+  
+  <span class="token selector">&amp;--offsetAfter</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridItem(4, (offsetAfter: 2))</span>
+  
+  <span class="token selector">&amp;--wide</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridItem(6)</span>
+</code></pre></div><div class="language-html extra-class"><pre class="language-html"><code>	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>container<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>grid<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item item--offsetBefore<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>2 (Offset before)<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item item--offsetAfter<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>3 (Offset after)<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item item--wide<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></details> <h2 id="gutter-configuration"><a href="#gutter-configuration" class="header-anchor">#</a> Gutter Configuration</h2> <p>In the sections above you already read about the &quot;gutter&quot;. It is the space between items, horizontally and vertically (if you use the gridV mixin).
+You can configure the default values for both types of gutter in the configuration. In addition to that
+you also can override those defaults per grid item using the &quot;gutter&quot; option.</p> <p>Take a look in the code example to see all the options you have to modify the gutter of an item</p> <h3 id="config-for-the-default-grid"><a href="#config-for-the-default-grid" class="header-anchor">#</a> Config for the default grid</h3> <div class="preview"><div class="preview__iframeContainer" style="height:130px;"><div class="resizable active resizable vdr" style="position:absolute;top:0px;left:0px;width:0px;height:0px;z-index:auto;user-select:auto;moz-user-select:auto;webkit-user-select:auto;ms-user-select:auto;"><div class="handle handle-mr" style="display:block;"></div><iframe src="/examples/gridGutterConfig" style="height:130px;"></iframe></div></div> <a href="/examples/gridGutterConfig" target="_blank" class="preview__link">Open the example in a new tab</a></div> <details class="custom-block details"><summary>CODE</summary> <div class="language-sass extra-class"><pre class="language-sass"><code><span class="token selector">.container</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>container</span>
+
+<span class="token selector">.grid</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>grid()</span>
+
+<span class="token selector">.item</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>gridItem(2)</span>
+  
+<span class="token atrule-line">  <span class="token atrule">+</span>bpSmAndSmaller</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridItem(4)</span>
+  
+  <span class="token comment">// You can completely remove the gutter on both sides</span>
+  <span class="token selector">&amp;--noGutter</span>
+    <span class="token comment">// &quot;off&quot; and &quot;auto&quot; are equivalent with setting the value to 0</span>
+<span class="token variable-line">    <span class="token variable">$opt</span><span class="token punctuation">:</span> (gutter<span class="token punctuation">:</span> false)</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridItem(2, $opt)</span>
+    
+<span class="token atrule-line">    <span class="token atrule">+</span>bpSmAndSmaller</span>
+<span class="token atrule-line">      <span class="token atrule">+</span>gridItem(4, $opt)</span>
+  
+  <span class="token comment">// Remove the gutter on the left side</span>
+  <span class="token selector">&amp;--noGutterLeft</span>
+    <span class="token comment">// &quot;auto&quot; and &quot;true&quot; both are replaced with the default gutter </span>
+	<span class="token comment">// set in the config</span>
+<span class="token variable-line">    <span class="token variable">$opt</span><span class="token punctuation">:</span> (gutter<span class="token punctuation">:</span> 0 auto)</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridItem(2, $opt)</span>
+    
+<span class="token atrule-line">    <span class="token atrule">+</span>bpSmAndSmaller</span>
+<span class="token atrule-line">      <span class="token atrule">+</span>gridItem(4, $opt)</span>
+  
+  <span class="token comment">// Remove the gutter on the right side</span>
+  <span class="token selector">&amp;--noGutterRight</span>
+<span class="token variable-line">    <span class="token variable">$opt</span><span class="token punctuation">:</span> (gutter<span class="token punctuation">:</span> auto 0)</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridItem(2, $opt)</span>
+    
+<span class="token atrule-line">    <span class="token atrule">+</span>bpSmAndSmaller</span>
+<span class="token atrule-line">      <span class="token atrule">+</span>gridItem(4, $opt)</span>
+  
+  <span class="token comment">// You can also modify the value instead of disabling it</span>
+  <span class="token comment">// NOTE: The gutter definition will be split by 2 because the gutter </span>
+  <span class="token comment">// is always shared between two items.</span>
+  <span class="token selector">&amp;--changedGutter</span>
+<span class="token variable-line">    <span class="token variable">$opt</span><span class="token punctuation">:</span> (gutter<span class="token punctuation">:</span> (left<span class="token punctuation">:</span> 60px, right<span class="token punctuation">:</span> 10px))</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridItem(2, $opt)</span>
+    
+<span class="token atrule-line">    <span class="token atrule">+</span>bpSmAndSmaller</span>
+      <span class="token comment">// You can also define different gutters on different breakpoints</span>
+<span class="token variable-line">      <span class="token variable">$opt</span><span class="token punctuation">:</span> (gutter<span class="token punctuation">:</span> (left<span class="token punctuation">:</span> off, right<span class="token punctuation">:</span> 10px))</span>
+<span class="token atrule-line">      <span class="token atrule">+</span>gridItem(4, $opt)</span>
+</code></pre></div><div class="language-html extra-class"><pre class="language-html"><code>	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>container<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>grid<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item item--noGutterLeft<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>No gutter left<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item item--noGutter<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>No gutter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item item--changedGutter<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Custom gutter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item item--noGutterRight<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>No gutter right<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item item--noGutterLeft<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>No gutter left, too<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item item--noGutterRight<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>No gutter right, too<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></details> <h3 id="config-for-the-grid-with-vertical-gutter"><a href="#config-for-the-grid-with-vertical-gutter" class="header-anchor">#</a> Config for the grid with vertical gutter</h3> <div class="preview"><div class="preview__iframeContainer" style="height:180px;"><div class="resizable active resizable vdr" style="position:absolute;top:0px;left:0px;width:0px;height:0px;z-index:auto;user-select:auto;moz-user-select:auto;webkit-user-select:auto;ms-user-select:auto;"><div class="handle handle-mr" style="display:block;"></div><iframe src="/examples/gridGutterConfig/indexv.html" style="height:180px;"></iframe></div></div> <a href="/examples/gridGutterConfig/indexv.html" target="_blank" class="preview__link">Open the example in a new tab</a></div> <details class="custom-block details"><summary>CODE</summary> <div class="language-sass extra-class"><pre class="language-sass"><code><span class="token selector">.container</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>container</span>
+
+<span class="token selector">.gridV</span>
+    <span class="token comment">// You can change the gutter compensation using any </span>
+	<span class="token comment">// valid gutter definition. Here we disable the vertical compensation </span>
+	<span class="token comment">// but leave the horizontal value on the default</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridV(0 auto)</span>
+    
+<span class="token selector">.itemV</span>
+<span class="token atrule-line">  <span class="token atrule">+</span>gridItemV(4)</span>
+
+  <span class="token selector">&amp;--noGutter</span>
+    <span class="token comment">// You can set &quot;true&quot; to use the default gutter on all sides or </span>
+	<span class="token comment">// &quot;false&quot; to disable the gutter on all sides</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridItemV(4, (gutter: false))</span>
+
+  <span class="token selector">&amp;--noGutterVertical</span>
+    <span class="token comment">// You can use the css short syntax like &quot;vertical gutter&quot; and </span>
+	<span class="token comment">// &quot;horizontal gutter&quot;</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridItemV(4, (gutter: 0 true))</span>
+
+  <span class="token selector">&amp;--noGutterHorizontal</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridItemV(4, (gutter: auto 0))</span>
+
+  <span class="token selector">&amp;--noGutterLeft</span>
+    <span class="token comment">// You can use the sass map syntax for &quot;top&quot;, &quot;right&quot;, &quot;bottom&quot; and &quot;left&quot;</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridItemV(4, (gutter: (left: false)))</span>
+
+  <span class="token selector">&amp;--noGutterRight</span>
+    <span class="token comment">// You can also use the css syntax for &quot;top&quot;, &quot;right&quot;, &quot;bottom&quot; and &quot;left&quot;</span>
+<span class="token atrule-line">    <span class="token atrule">+</span>gridItemV(4, (gutter: auto 0 auto auto))</span>
+</code></pre></div><div class="language-html extra-class"><pre class="language-html"><code>	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>container<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>grid<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item item--noGutterLeft<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>No gutter left<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item item--noGutter<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>No gutter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item item--changedGutter<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Custom gutter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item item--noGutterRight<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>No gutter right<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item item--noGutterLeft<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>No gutter left, too<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item item--noGutterRight<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>No gutter right, too<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></details></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/guide/Breakpoints.html" class="prev">
+        Breakpoints
+      </a></span> <span class="next"><a href="/guide/MarginsPaddingsSpacer.html">
+        Margins, Paddings &amp; Spacer
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.09508cbb.js" defer></script><script src="/assets/js/2.588c7243.js" defer></script><script src="/assets/js/9.5ec716ef.js" defer></script><script src="/assets/js/3.f2662b9b.js" defer></script>
+  </body>
+</html>

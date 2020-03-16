@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Configuration | Sassy - A SASS library</title>
+    <meta name="description" content="">
+    <meta name="generator" content="VuePress 1.3.1">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.c2bd1792.css" as="style"><link rel="preload" href="/assets/js/app.09508cbb.js" as="script"><link rel="preload" href="/assets/js/2.588c7243.js" as="script"><link rel="preload" href="/assets/js/8.1e84f11a.js" as="script"><link rel="preload" href="/assets/js/3.f2662b9b.js" as="script"><link rel="prefetch" href="/assets/js/10.bbcea3a5.js"><link rel="prefetch" href="/assets/js/11.ad312e89.js"><link rel="prefetch" href="/assets/js/12.0c1b38da.js"><link rel="prefetch" href="/assets/js/4.550347ad.js"><link rel="prefetch" href="/assets/js/5.f1c2ae01.js"><link rel="prefetch" href="/assets/js/6.63c639f0.js"><link rel="prefetch" href="/assets/js/7.58e360e1.js"><link rel="prefetch" href="/assets/js/9.5ec716ef.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c2bd1792.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Sassy - A SASS library</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/" class="sidebar-link">Sassy</a></li><li><a href="/guide/Configuration.html" class="active sidebar-link">Configuration</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/Configuration.html#adding-your-configuration" class="sidebar-link">Adding your configuration</a></li><li class="sidebar-sub-header"><a href="/guide/Configuration.html#breakpoints" class="sidebar-link">Breakpoints</a></li><li class="sidebar-sub-header"><a href="/guide/Configuration.html#grids" class="sidebar-link">Grids</a></li><li class="sidebar-sub-header"><a href="/guide/Configuration.html#margins-paddings-spacer" class="sidebar-link">Margins, Paddings &amp; Spacer</a></li></ul></li><li><a href="/guide/Breakpoints.html" class="sidebar-link">Breakpoints</a></li><li><a href="/guide/Grid.html" class="sidebar-link">Grid</a></li><li><a href="/guide/MarginsPaddingsSpacer.html" class="sidebar-link">Margins, Paddings &amp; Spacer</a></li><li><a href="/guide/Misc.html" class="sidebar-link">Miscellaneous</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="configuration"><a href="#configuration" class="header-anchor">#</a> Configuration</h1> <p>You can configure every aspect of the Sassy library to match the needs of your project. Sassy
+comes with it's own configuration file that uses sass' &quot;!default&quot; modifier that will only set a variable if it is not already defined.
+So its easy to override single values without copying the whole config file.</p> <h2 id="adding-your-configuration"><a href="#adding-your-configuration" class="header-anchor">#</a> Adding your configuration</h2> <p>To create your own, project specific configuration just create a new sass file (e.g. config.sass) and
+include it before you include the &quot;Config.sass&quot; that comes with sassy.</p> <div class="language-sass extra-class"><pre class="language-sass"><code><span class="token comment">// Load your own configuration</span>
+<span class="token atrule-line"><span class="token atrule">@import</span> &quot;./path/to/config&quot;</span>
+
+<span class="token comment">// Load the sassy mixins and the default configuration</span>
+<span class="token atrule-line"><span class="token atrule">@import</span> &quot;~<span class="token atrule">@neunerlei</span>/sassy/Resources&quot;</span>
+<span class="token atrule-line"><span class="token atrule">@import</span> &quot;~<span class="token atrule">@neunerlei</span>/sassy/Config&quot;</span>
+</code></pre></div><p>So in this example we modified the width's of the breakpoints. The source code
+of this example is identical with <a href="/guide/breakpoints.html#example">this one</a></p> <div class="language-sass extra-class"><pre class="language-sass"><code><span class="token variable-line"><span class="token variable">$sassyBreakpointSmMin</span><span class="token punctuation">:</span> 350px</span>
+<span class="token variable-line"><span class="token variable">$sassyBreakpointMdMin</span><span class="token punctuation">:</span> 400px</span>
+<span class="token variable-line"><span class="token variable">$sassyBreakpointLgMin</span><span class="token punctuation">:</span> 450px</span>
+<span class="token variable-line"><span class="token variable">$sassyBreakpointXlMin</span><span class="token punctuation">:</span> 500px</span>
+</code></pre></div><p>An now get this result instead of the default breakpoints</p> <div class="preview"><div class="preview__iframeContainer" style="height:180px;"><div class="resizable active resizable vdr" style="position:absolute;top:0px;left:0px;width:0px;height:0px;z-index:auto;user-select:auto;moz-user-select:auto;webkit-user-select:auto;ms-user-select:auto;"><div class="handle handle-mr" style="display:block;"></div><iframe src="/examples/configuration" style="height:180px;"></iframe></div></div> <a href="/examples/configuration" target="_blank" class="preview__link">Open the example in a new tab</a></div> <h2 id="breakpoints"><a href="#breakpoints" class="header-anchor">#</a> Breakpoints</h2> <p>The first part of the configuration defines the breakpoints. They have the following default values:</p> <div class="language-sass extra-class"><pre class="language-sass"><code><span class="token comment">// Min sizes</span>
+<span class="token variable-line"><span class="token variable">$sassyBreakpointXxsMin</span><span class="token punctuation">:</span> 0 !default</span>
+<span class="token variable-line"><span class="token variable">$sassyBreakpointXsMin</span><span class="token punctuation">:</span> 0 !default</span>
+<span class="token variable-line"><span class="token variable">$sassyBreakpointSmMin</span><span class="token punctuation">:</span> 550px !default</span>
+<span class="token variable-line"><span class="token variable">$sassyBreakpointMdMin</span><span class="token punctuation">:</span> 768px !default</span>
+<span class="token variable-line"><span class="token variable">$sassyBreakpointLgMin</span><span class="token punctuation">:</span> 992px !default</span>
+<span class="token variable-line"><span class="token variable">$sassyBreakpointXlMin</span><span class="token punctuation">:</span> 1200px !default</span>
+
+<span class="token comment">// Max sizes</span>
+<span class="token variable-line"><span class="token variable">$sassyBreakpointXxsMax</span><span class="token punctuation">:</span> 300px !default</span>
+<span class="token variable-line"><span class="token variable">$sassyBreakpointXsMax</span><span class="token punctuation">:</span> <span class="token variable">$sassyBreakpointSmMin</span> <span class="token operator">-</span> 1px !default</span>
+<span class="token variable-line"><span class="token variable">$sassyBreakpointSmMax</span><span class="token punctuation">:</span> <span class="token variable">$sassyBreakpointMdMin</span> <span class="token operator">-</span> 1px !default</span>
+<span class="token variable-line"><span class="token variable">$sassyBreakpointMdMax</span><span class="token punctuation">:</span> <span class="token variable">$sassyBreakpointLgMin</span> <span class="token operator">-</span> 1px !default</span>
+<span class="token variable-line"><span class="token variable">$sassyBreakpointLgMax</span><span class="token punctuation">:</span> <span class="token variable">$sassyBreakpointXlMin</span> <span class="token operator">-</span> 1px !default</span>
+<span class="token variable-line"><span class="token variable">$sassyBreakpointXlMax</span><span class="token punctuation">:</span> 999999px !default</span>
+
+<span class="token comment">// Service definition</span>
+<span class="token comment">// The name of the class that provides the breakpoint definition to the js counterpart</span>
+<span class="token variable-line"><span class="token variable">$sassyBreakpointServiceClass</span><span class="token punctuation">:</span> sassy-breakpoint-service !default</span>
+</code></pre></div><h2 id="grids"><a href="#grids" class="header-anchor">#</a> Grids</h2> <p>You can also configure all aspects of grids including the size of the container on each breakpoint:</p> <div class="language-sass extra-class"><pre class="language-sass"><code><span class="token comment">// The number of columns used in the grid by default</span>
+<span class="token comment">// You can override this by using &quot;of&quot; in your gridItem options</span>
+<span class="token variable-line"><span class="token variable">$sassyGridColumns</span><span class="token punctuation">:</span> 12 !default</span>
+<span class="token comment">// True to automatically create the flex-box order</span>
+<span class="token variable-line"><span class="token variable">$sassyAutoOrder</span><span class="token punctuation">:</span> true !default</span>
+<span class="token comment">// The number of elements which get their order automatically set</span>
+<span class="token variable-line"><span class="token variable">$sassyAutoOrderLength</span><span class="token punctuation">:</span> 4 !default</span>
+<span class="token comment">// The gutter for both the horizontal and vertical axis</span>
+<span class="token comment">// You can override this by using &quot;offset&quot; in your gridItem options</span>
+<span class="token variable-line"><span class="token variable">$sassyGutter</span><span class="token punctuation">:</span> 30px !default</span>
+<span class="token variable-line"><span class="token variable">$sg</span><span class="token punctuation">:</span> <span class="token variable">$sassyGutter</span> !default <span class="token operator">/</span><span class="token operator">/</span> shortcut!</span>
+<span class="token comment">// Optional override to change the vertical</span>
+<span class="token variable-line"><span class="token variable">$sassyGutterVertical</span><span class="token punctuation">:</span> <span class="token variable">$sassyGutter</span> !default</span>
+<span class="token variable-line"><span class="token variable">$sgv</span><span class="token punctuation">:</span> <span class="token variable">$sassyGutterVertical</span> !default <span class="token operator">/</span><span class="token operator">/</span> shortcut!</span>
+<span class="token variable-line"><span class="token variable">$sassyGutterHorizontal</span><span class="token punctuation">:</span> <span class="token variable">$sassyGutter</span> !default</span>
+<span class="token variable-line"><span class="token variable">$sgh</span><span class="token punctuation">:</span> <span class="token variable">$sassyGutterHorizontal</span> !default <span class="token operator">/</span><span class="token operator">/</span> shortcut!</span>
+
+<span class="token comment">// Container sizes for the different breakpoints</span>
+<span class="token variable-line"><span class="token variable">$sassyContainerWidthXxs</span><span class="token punctuation">:</span> 100<span class="token operator">%</span> !default</span>
+<span class="token variable-line"><span class="token variable">$sassyContainerWidthXs</span><span class="token punctuation">:</span> 100<span class="token operator">%</span> !default</span>
+<span class="token variable-line"><span class="token variable">$sassyContainerWidthSm</span><span class="token punctuation">:</span> 550px !default</span>
+<span class="token variable-line"><span class="token variable">$sassyContainerWidthMd</span><span class="token punctuation">:</span> 720px !default</span>
+<span class="token variable-line"><span class="token variable">$sassyContainerWidthLg</span><span class="token punctuation">:</span> 960px !default</span>
+<span class="token variable-line"><span class="token variable">$sassyContainerWidthXl</span><span class="token punctuation">:</span> 1140px !default</span>
+</code></pre></div><h2 id="margins-paddings-spacer"><a href="#margins-paddings-spacer" class="header-anchor">#</a> Margins, Paddings &amp; Spacer</h2> <p>The last part of the configuration is to define the sizes for margins and paddings:</p> <div class="language-sass extra-class"><pre class="language-sass"><code><span class="token comment">// MARGINS</span>
+<span class="token comment">// ==================================================</span>
+<span class="token variable-line"><span class="token variable">$sassyMargin</span><span class="token punctuation">:</span> 15px !default</span>
+<span class="token variable-line"><span class="token variable">$margin</span><span class="token punctuation">:</span> <span class="token variable">$sassyMargin</span> !default <span class="token operator">/</span><span class="token operator">/</span> shortcut!</span>
+<span class="token variable-line"><span class="token variable">$sassyMarginHorizontal</span><span class="token punctuation">:</span> <span class="token variable">$sassyMargin</span> !default</span>
+<span class="token variable-line"><span class="token variable">$sassyMarginVertical</span><span class="token punctuation">:</span> <span class="token variable">$sassyMargin</span> !default</span>
+
+<span class="token comment">// PADDINGS</span>
+<span class="token comment">// ==================================================</span>
+<span class="token variable-line"><span class="token variable">$sassyPadding</span><span class="token punctuation">:</span> <span class="token variable">$sassyMargin</span> <span class="token operator">/</span> 3 !default</span>
+<span class="token variable-line"><span class="token variable">$sassyPaddingHorizontal</span><span class="token punctuation">:</span> <span class="token variable">$sassyMarginHorizontal</span> <span class="token operator">/</span> 3 !default</span>
+<span class="token variable-line"><span class="token variable">$sassyPaddingVertical</span><span class="token punctuation">:</span> <span class="token variable">$sassyMarginVertical</span> <span class="token operator">/</span> 3 !default</span>
+
+<span class="token comment">// SPACERS</span>
+<span class="token comment">// ==================================================</span>
+<span class="token variable-line"><span class="token variable">$sassySpacerBase</span><span class="token punctuation">:</span> <span class="token variable">$sassyMargin</span> !default</span>
+<span class="token variable-line"><span class="token variable">$sassySpacerMultipliers</span><span class="token punctuation">:</span> 2 4 6 8 !default</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/" class="prev router-link-active">
+        Sassy
+      </a></span> <span class="next"><a href="/guide/Breakpoints.html">
+        Breakpoints
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.09508cbb.js" defer></script><script src="/assets/js/2.588c7243.js" defer></script><script src="/assets/js/8.1e84f11a.js" defer></script><script src="/assets/js/3.f2662b9b.js" defer></script>
+  </body>
+</html>
