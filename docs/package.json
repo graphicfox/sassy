@@ -1,0 +1,63 @@
+{
+	"name": "@neunerlei/sassy-docs",
+	"version": "1.0.0",
+	"description": "Documentation",
+	"scripts": {
+		"dev": "vuepress dev .",
+		"build": "vuepress build .",
+		"devDemos": "labor-asset-building watch",
+		"buildDemos": "labor-asset-building build"
+	},
+	"author": "",
+	"license": "Apache-2.0",
+	"dependencies": {
+		"@labor-digital/asset-building": "^4.10.0",
+		"vue-draggable-resizable": "^2.1.0",
+		"vuepress": "^1.3.1",
+		"@neunerlei/sassy": "./.."
+	},
+	"labor": {
+		"apps": [
+			{
+				"entry": "./.vuepress/public/examples/breakpoints/styles.sass",
+				"output": "./.vuepress/public/examples/breakpoints/styles.js"
+			},
+			{
+				"entry": "./.vuepress/public/examples/container/styles.sass",
+				"output": "./.vuepress/public/examples/container/styles.js"
+			},
+			{
+				"entry": "./.vuepress/public/examples/gridBasic/styles.sass",
+				"output": "./.vuepress/public/examples/gridBasic/styles.js"
+			},
+			{
+				"entry": "./.vuepress/public/examples/gridResponsive/styles.sass",
+				"output": "./.vuepress/public/examples/gridResponsive/styles.js"
+			},
+			{
+				"entry": "./.vuepress/public/examples/gridVerticalGutter/styles.sass",
+				"output": "./.vuepress/public/examples/gridVerticalGutter/styles.js"
+			},
+			{
+				"entry": "./.vuepress/public/examples/gridOrder/styles.sass",
+				"output": "./.vuepress/public/examples/gridOrder/styles.js"
+			},
+			{
+				"entry": "./.vuepress/public/examples/gridCustomCols/styles.sass",
+				"output": "./.vuepress/public/examples/gridCustomCols/styles.js"
+			},
+			{
+				"entry": "./.vuepress/public/examples/gridOffset/styles.sass",
+				"output": "./.vuepress/public/examples/gridOffset/styles.js"
+			},
+			{
+				"entry": "./.vuepress/public/examples/gridGutterConfig/styles.sass",
+				"output": "./.vuepress/public/examples/gridGutterConfig/styles.js"
+			},
+			{
+				"entry": "./.vuepress/public/examples/configuration/styles.sass",
+				"output": "./.vuepress/public/examples/configuration/styles.js"
+			}
+		]
+	}
+}

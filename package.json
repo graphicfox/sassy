@@ -1,16 +1,15 @@
 {
-  "name": "@labor/sassy",
+  "name": "@neunerlei/sassy",
   "version": "1.1.0",
-  "description": "A library of general purpose sass/scss mixins like breakpoints, margins, spacers and so on...",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "A library of general purpose sass/scss mixins like breakpoints, margins, spacers and more",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/labor-digital/labor-sass-sassy.git"
+    "url": "git+ssh://git@github.com:Neunerlei/sassy.git"
   },
-  "author": "Martin Neundorfer @LABOR",
-  "license": "MIT",
-  "homepage": "https://bitbucket.org/labor-digital/labor-sass-sassy#readme"
+  "bugs": {
+    "url": "https://github.com/Neunerlei/sassy/issues"
+  },
+  "author": "Martin Neundorfer <code@neunerlei.eu> (https://neunerlei.eu)",
+  "license": "Apache-2.0",
+  "homepage": "https://sassy.neunerlei.eu"
 }

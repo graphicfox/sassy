@@ -1,0 +1,229 @@
+<!--
+  ~ Copyright 2020 LABOR.digital
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  ~ Last modified: 2020.03.13 at 14:14
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sassy Demo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/dist/css/bundle.css">
+	<link rel="stylesheet" href="css/src/examples/ExampleGridOffset.sass">
+</head>
+<body>
+
+
+
+<div class="example">
+	<h3 class="example__headline">Example: Container</h3>
+	<div class="example__desc">
+		<p>The container is already preconfigured for the breakpoints, but you can change the container
+		sizes for each breakpoint using the config variables.</p>
+	</div>
+	<div class="example__content exampleContainer">
+		
+		<div class="container">
+			<div class="content">The responsive container</div>
+		</div>
+		
+	</div>
+</div>
+
+<div class="example">
+	<h3 class="example__headline">Example: Breakpoints</h3>
+	<div class="example__desc">
+		<p></p>
+	</div>
+	<div class="example__content exampleBreakpoints">
+		
+		<div class="content">Breakpoint: </div>
+	
+	</div>
+</div>
+
+
+<div class="example">
+	<h3 class="example__headline">Example: Basic Grid</h3>
+	<div class="example__desc">
+		<p></p>
+	</div>
+	<div class="example__content exampleGridBasic">
+		
+		<div class="container">
+			<div class="grid">
+				<div class="fullWidthItem content">
+					Full width
+				</div>
+				<div class="splitLeftItem content">
+					Left
+				</div>
+				<div class="splitRightItem content">
+					Right
+				</div>
+			</div>
+		</div>
+	
+	</div>
+</div>
+
+
+<div class="example">
+	<h3 class="example__headline">Example: Responsive Grid</h3>
+	<div class="example__desc">
+		<p></p>
+	</div>
+	<div class="example__content exampleGridResponsive">
+		
+		<div class="container">
+			<div class="grid">
+				<div class="item content">1</div>
+				<div class="item content">2</div>
+				<div class="item content">3</div>
+				<div class="item content">4</div>
+				<div class="item content">5</div>
+				<div class="item content">6</div>
+			</div>
+		</div>
+	
+	</div>
+</div>
+
+
+<div class="example">
+	<h3 class="example__headline">Example: Grid with vertical gutter</h3>
+	<div class="example__desc">
+		<p></p>
+	</div>
+	<div class="example__content exampleGridVerticalGutter">
+		
+		<div class="container">
+			<div class="grid">
+				<div class="item content">1</div>
+				<div class="item content">2</div>
+				<div class="item content">3</div>
+				<div class="item content">4</div>
+			</div>
+		</div>
+	
+	</div>
+</div>
+
+
+<div class="example">
+	<h3 class="example__headline">Example: Grid Item Order</h3>
+	<div class="example__desc">
+		<p></p>
+	</div>
+	<div class="example__content exampleGridOrder">
+		
+		<div class="container">
+			<div class="grid">
+				<div class="item content">3</div>
+				<div class="item item--second content">2</div>
+				<div class="item item--first content">1</div>
+			</div>
+		</div>
+	
+	</div>
+</div>
+
+
+<div class="example">
+	<h3 class="example__headline">Example: Grids with custom column numbers</h3>
+	<div class="example__desc">
+		<p></p>
+	</div>
+	<div class="example__content exampleGridCustomCols">
+		
+		<div class="container">
+			<div class="grid">
+				<div class="item content">1</div>
+				<div class="item content">2</div>
+				<div class="itemThird content">3</div>
+				<div class="itemThird content">4</div>
+				<div class="itemThird content">5</div>
+			</div>
+		</div>
+	
+	</div>
+</div>
+
+
+<div class="example">
+	<h3 class="example__headline">Example: Offset</h3>
+	<div class="example__desc">
+		<p></p>
+	</div>
+	<div class="example__content exampleGridOffset">
+		
+		<div class="container">
+			<div class="grid">
+				<div class="item content">1</div>
+				<div class="item item--offsetBefore content">2 (Offset before)</div>
+				<div class="item item--offsetAfter content">3 (Offset after)</div>
+				<div class="item item--wide content">4</div>
+			</div>
+		</div>
+	
+	</div>
+</div>
+
+
+<div class="example">
+	<h3 class="example__headline">Example: Gutter Config</h3>
+	<div class="example__desc">
+		<p></p>
+	</div>
+	<div class="example__content exampleGridGutterConfig">
+		
+		<!-- A default grid -->
+		<div class="container">
+			<div class="grid">
+				<div class="item item--noGutterLeft content">No gutter left</div>
+				<div class="item item--noGutter content">No gutter</div>
+				<div class="item item--changedGutter content">Custom gutter</div>
+				<div class="item item--noGutterRight content">No gutter right</div>
+				<div class="item item--noGutterLeft content">No gutter left, too</div>
+				<div class="item item--noGutterRight content">No gutter right, too</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div class="example__desc">
+		<p></p>
+	</div>
+	
+	<div class="example__content exampleGridGutterConfig">
+		
+		<!-- A grid with vertical gutter -->
+		<div class="container">
+			<div class="gridV">
+				<div class="itemV itemV--noGutterLeft content">No gutter left</div>
+				<div class="itemV itemV--noGutter content">No gutter</div>
+				<div class="itemV itemV--noGutterHorizontal content">No horizontal gutter</div>
+				<div class="itemV itemV--noGutterVertical content">No vertical gutter</div>
+				<div class="itemV itemV--noGutterRight content">No gutter right</div>
+				<div class="itemV content">Default gutter</div>
+			</div>
+		</div>
+	
+	</div>
+</div>
+</body>
+</html>

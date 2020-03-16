@@ -3,11 +3,18 @@
  * For LABOR.digital
  */
 
-=transition( $duration: 0.5s, $easing: linear, $what: all )
+/**
+ * A simple helper for handling css transitions
+ *
+=transition($duration: 0.5s, $what: all, $easing: linear)
   transition: all $duration $easing
   @if $what != all
     transition-property: unquote($what)
 
+/**
+ * Adds either the a background image to the element
+ * or if $bgImage is not given only provides the common background image configuration for an element
+ *
 =imageBg($bgImage: null, $type: cover)
   background-repeat: no-repeat
   background-clip: padding-box
@@ -16,13 +23,22 @@
   @if $bgImage != null
     background-image: url($bgImage)
 
+/**
+ * Creates a container that has always a fixed size ratio
+ * even when the outer container is scaled based on the width
 =proportionalContainer($width, $height)
   padding-top: percentage(($height / $width))
-
+  
+/**
+ * Renders it's content only when printed and not on a screen
+ *
 =printOnly()
   @media print
     @content
 
+/**
+ * Renders it's content only on a screen and not in the print mode
+ *
 =screenOnly()
   @media screen
     @content

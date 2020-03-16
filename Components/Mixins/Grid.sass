@@ -2,8 +2,14 @@
  * Created by Martin Neundorfer on 20.12.2018.
  * For LABOR.digital
  */
+
+/**
+ * Internal helper to handle the different special values a gutter value may have.
+ *
 @function sassyAutoGutterFallback($gutter, $fallback)
-  @if $gutter == auto
+  @if $gutter == false or $gutter == off
+    @return 0
+  @if $gutter == true or $gutter == null or $gutter == auto
     @return $fallback
   @return $gutter
 
@@ -18,41 +24,75 @@
  * - 10px 5px -> The gutter at the top and bottom should be 10px left and right 5px
  * - 10px 5px 4px 3px -> The gutter at the top should be 10px, right 5px at the bottom 4px and left 3px
  *
- * Note that all gutters are devided by two as two elements share the gutter with each other
-@function sassyParseGutter($gutter)
+ * Note that all gutters are divided by two as two elements share the gutter with each other
+ *
+@function sassyParseGutter($gutter, $expectWithVertical: true)
   $gt: 0px !default
   $gr: 0px !default
   $gb: 0px !default
   $gl: 0px !default
   @if type-of($gutter) == "list"
-    @if length($gutter) == 2
-      $gt: sassyAutoGutterFallback(nth($gutter, 1), $sgv) / 2
-      $gr: sassyAutoGutterFallback(nth($gutter, 2), $sgh) / 2
+    @if $expectWithVertical == false
+      @if length($gutter) == 2
+        $gl: sassyAutoGutterFallback(nth($gutter, 1), $sgh)
+        $gr: sassyAutoGutterFallback(nth($gutter, 2), $sgh)
+    @else
+      @if length($gutter) == 2
+        $gt: sassyAutoGutterFallback(nth($gutter, 1), $sgv) / 2
+        $gr: sassyAutoGutterFallback(nth($gutter, 2), $sgh) / 2
+        $gb: $gt
+        $gl: $gr
+      @else if length($gutter) == 4
+        $gt: sassyAutoGutterFallback(nth($gutter, 1), $sgv) / 2
+        $gr: sassyAutoGutterFallback(nth($gutter, 2), $sgh) / 2
+        $gb: sassyAutoGutterFallback(nth($gutter, 3), $sgv) / 2
+        $gl: sassyAutoGutterFallback(nth($gutter, 4), $sgh) / 2
+  @else if type-of($gutter) == "map"
+    @if $expectWithVertical == false
+      $gr: sassyAutoGutterFallback(map-get($gutter, "right"), $sgh)
+      $gl: sassyAutoGutterFallback(map-get($gutter, "left"), $sgh)
+    @else
+      $gt: sassyAutoGutterFallback(map-get($gutter, "top"), $sgv) / 2
+      $gr: sassyAutoGutterFallback(map-get($gutter, "right"), $sgh) / 2
+      $gb: sassyAutoGutterFallback(map-get($gutter, "bottom"), $sgv) / 2
+      $gl: sassyAutoGutterFallback(map-get($gutter, "left"), $sgh) / 2
+  @else if $gutter == true or $gutter == auto
+    @if $expectWithVertical == false
+      $gr: $sgh
+      $gl: $gr
+    @else
+      $gt: $sgv / 2
+      $gr: $sgh / 2
       $gb: $gt
       $gl: $gr
-    @else if length($gutter) == 4
-      $gt: sassyAutoGutterFallback(nth($gutter, 1), $sgv) / 2
-      $gr: sassyAutoGutterFallback(nth($gutter, 2), $sgh) / 2
-      $gb: sassyAutoGutterFallback(nth($gutter, 3), $sgv) / 2
-      $gl: sassyAutoGutterFallback(nth($gutter, 4), $sgh) / 2
-  @else if $gutter == true or $gutter == auto
-    $gt: $sgv / 2
-    $gr: $sgh / 2
-    $gb: $gt
-    $gl: $gr
-  @else if $gutter == false
+  @else if $gutter == false OR $gutter == off
   @else
-    $gt: sassyAutoGutterFallback($gutter, $sgv) / 2
-    $gr: $gt
-    $gb: $gt
-    $gl: $gt
-
-  @return (gt: $gt, gr: $gr, gb: $gb, gl: $gl)
+    @if $expectWithVertical == false
+      $gr: sassyAutoGutterFallback($gutter, $sgh)
+      $gl: $gr
+    @else
+      $gt: sassyAutoGutterFallback($gutter, $sgv) / 2
+      $gr: $gt
+      $gb: $gt
+      $gl: $gt
+    
+  // Handle missing units
+  @if unit($gt) == ""
+    $gt: $gt + 0px
+  @if unit($gr) == ""
+    $gr: $gr + 0px
+  @if unit($gb) == ""
+    $gb: $gb + 0px
+  @if unit($gl) == ""
+    $gl: $gl + 0px
+    
+  // Build output
+  @return (top: $gt, right: $gr, bottom: $gb, left: $gl)
 
 /**
- * This mixin is used to render the order property to move
- * flexbox children around
-=gridItemOrder($order, $override: false)
+ * Can be used used to set the order property which move flexbox children around
+ *
+=gridItemOrder($order, $override: true)
   -ms-flex-order: $order
   order: $order
   @if $override
@@ -60,83 +100,101 @@
     order: $order !important
 
 /**
- * A tiny helper to convert the target element into a responsive container
-=container()
+ * A helper to convert the target element into a responsive container.
+ * The content will be always centered on the page. The width of the content area can be configured globally.
+ * If you need a special container size you can also override the global values by using the $override parameter
+ *
+ * @param $override A map containing the overrides for one or more breakpoints (xxs: 120px, xs: 260px,...)
+ *
+=container($override: ())
   position: relative
   margin: 0 auto
   // The order is always XS -> XXS -> SM... Because XXS has to overrule the priority of XS!
   // XS (Both are active without breakpoint, because xs is the bootstrap standard...)
-  width: $sassyContainerWidthXs
-  @if $sassyContainerWidthXs == 100%
-    padding: 0 #{$sassyGutterHorizontal / 2 }
-  // XXS (XXS overrides XS because we think it is more important)
+  @if (map-has-key($override, xs))
+    width: map-get($override, xs)
+  @else
+    width: calc(#{$sassyContainerWidthXs} - #{$sassyGutterHorizontal})
   +bpXxs
-    width: $sassyContainerWidthXxs
-    @if $sassyContainerWidthXxs == 100%
-      padding: 0 #{$sassyGutterHorizontal / 2 }
+    @if (map-has-key($override, xxs))
+      width: map-get($override, xxs)
+    @else
+      width: calc(#{$sassyContainerWidthXxs} - #{$sassyGutterHorizontal})
   +bpSmAndBigger()
-    width: $sassyContainerWidthSm
-    @if $sassyContainerWidthSm == 100%
-      padding: 0 #{$sassyGutterHorizontal / 2 }
+    @if (map-has-key($override, sm))
+      width: map-get($override, sm)
+    @else
+      width: $sassyContainerWidthSm
   +bpMdAndBigger()
-    width: $sassyContainerWidthMd
-    @if $sassyContainerWidthMd == 100%
-      padding: 0 #{$sassyGutterHorizontal / 2 }
+    @if (map-has-key($override, md))
+      width: map-get($override, md)
+    @else
+      width: $sassyContainerWidthMd
   +bpLgAndBigger()
-    width: $sassyContainerWidthLg
-    @if $sassyContainerWidthLg == 100%
-      padding: 0 #{$sassyGutterHorizontal / 2 }
+    @if (map-has-key($override, lg))
+      width: map-get($override, lg)
+    @else
+      width: $sassyContainerWidthLg
   +bpXl()
-    width: $sassyContainerWidthXl
-    @if $sassyContainerWidthXl == 100%
-      padding: 0 #{$sassyGutterHorizontal / 2 }
-
+    @if (map-has-key($override, xl))
+      width: map-get($override, xl)
+    @else
+      width: $sassyContainerWidthXl
+    
 /**
  * Creates a grid wrapper which can contain multiple grid items.
- * By default the wrapper compoensates the vertical gutter for the first and
- * the last row of the grid.
+ * The difference to grid() is, that the wrapper compensates the vertical gutter for the first and
+ * the last row of the grid and not only left and right.
  *
- * @param $options Can take additional options for this grid
- *                 - gutterCompensation: A valid gutter definition for sassyParseGutter() to change/disable
- *                                       the automatic compensation of this grid's first and last rows
- *                 - hideCompensation:   By default all containers are set to "overflow:hidden" if you
- *                                       set this to FALSE the overflow keeps there
-=grid($options: ())
+ * NOTE: You should ONLY place items in this grid that have have the +gridItemV mixin applied to them.
+ *
+ * @param $gutterCompensation A valid gutter definition for sassyParseGutter() to change/disable
+ *                            the automatic compensation of this grid's first and last rows of items.
+ *                            This is "true" by default.
+ *
+=gridV($gutterCompensation: true)
   position: relative
-  display: flex
+  display: inline-flex
   flex-direction: row
   flex-wrap: wrap
-  box-sizing: border-box
-
+  pointer-events: none
+  
   // Handle children
   & > *
     position: relative
-    box-sizing: content-box
     flex-grow: 0
     flex-shrink: 0
-
+    pointer-events: all
+    
     // Auto order
     @if $sassyAutoOrder == true
-      +gridItemOrder(999999)
+      +gridItemOrder(999999, false)
       @for $i from 1 through $sassyAutoOrderLength
         &:nth-child(#{$i})
-          +gridItemOrder($i * 10)
-
-  // Prepare options
-  $defaults: (gutterCompensation: true, hideCompensation: true)
-  $options: map-merge($defaults, $options)
-
+          +gridItemOrder($i * 10, false)
+  
   // Handle gutter
-  $g: sassyParseGutter(map-get($options, gutterCompensation))
-  margin: #{-(map-get($g, gt)) + 0px} #{-(map-get($g, gr)) + 0px} #{-(map-get($g, gb)) + 0px} #{-(map-get($g, gl)) + 0px}
-  width: calc(100% + #{map-get($g, gl) + map-get($g, gr) + 0px})
-
-  // Handle overflow
-  @if map-get($options, hideCompensation) == true
-    overflow: hidden
+  $gutter: sassyParseGutter($gutterCompensation)
+  margin: #{-(map-get($gutter, top))} #{-(map-get($gutter, right))} #{-(map-get($gutter, bottom))} #{-(map-get($gutter, left))}
+  width: calc(100% + #{map-get($gutter, left)} + #{map-get($gutter, right)})
 
 /**
- * Defines the element as a child of a sassy grid.
+ * Creates a grid wrapper which can contain multiple grid items.
+ *
+ * NOTE: You should NOT place items in this grid that have the +gridItemV mixin applied to them
+ *
+ * @param $gutterCompensation A valid gutter definition for sassyParseGutter() to change/disable
+ *                            the automatic compensation of this grid's first and last rows of items.
+ *                            This is "auto" by default.
+ *
+=grid($gutterCompensation: true)
+  +gridV(sassyParseGutter($gutterCompensation, false))
+  
+  
+/**
+ * Defines the element as a child of a sassy grid with vertical gutter.
+ *
+ * NOTE: Items of this kind should ONLY be added to a grid that has the +gridItemV applied to it
  *
  * @param $span The range this column should take up in its width.
  *              (Range: 1 - $sassyGridColumns / the value of options.of)
@@ -145,28 +203,73 @@
  *                - order:  The numeric order of this item in the element list
  *                - gutter: A valid gutter definition for sassyParseGutter() to change/disable
  *                          the gutter of this child
-=gridItem($span: $sassyGridColumns, $options: ())
+ *                - offset: The column offset to the item that comes before this item
+ *                - offsetAfter: The same as offset but applies to the item after this item
+ *                - usePadding: By default the margin is used to create the gutters.
+ *                              If this conflicts with your use-case set this to true and the padding is used instead.
+ *
+=gridItemV($span: $sassyGridColumns, $options: ())
   // Prepare options and gutter
-  $defaults: (of: $sassyGridColumns, order: -1, gutter: true, offset: off)
+  $defaults: (of: $sassyGridColumns, order: -1, gutter: true, offset: off, offsetAfter: off, usePadding: false)
   $options: map-merge($defaults, $options)
   $g: sassyParseGutter(map-get($options, gutter))
+  $usePadding: map-get($options, usePadding)
 
-  @if $span == off
+  @if $span == false
     flex-basis: auto
-    margin-left: 0
+    @if $usePadding == true
+      padding-left: 0
+    @else
+      margin-left: 0
 
   @else
-    flex-basis: calc(#{percentage($span / map-get($options, of))} - #{(map-get($g, gl) + map-get($g, gr) + 0px)})
-    padding: map-get($g, gt) map-get($g, gr) map-get($g, gb) map-get($g, gl)
     overflow: inherit
+    flex-basis: calc(#{percentage($span / map-get($options, of))} - #{(map-get($g, left) + map-get($g, right))})
+    $margins: map-get($g, top) map-get($g, right) map-get($g, bottom) map-get($g, left)
+    @if $usePadding == true
+      padding: $margins
+    @else
+      margin: $margins
 
     // Handle offset
     @if map-get($options, offset) != off
       @if map-get($options, offset) != 0
-        margin-left: calc(#{percentage(1 / map-get($options, of))} * #{map-get($options, offset)})
-      @else if map-get($options, offset) == 0
-        margin-left: 0
+        @if $usePadding == true
+          padding-left: calc(#{percentage(1 / map-get($options, of))} * #{map-get($options, offset)})
+        @else
+          margin-left: calc(#{percentage(1 / map-get($options, of))} * #{map-get($options, offset)} + #{map-get($g, left)})
+    
+    // Handle offset to the right
+    @if map-get($options, offsetAfter) != off
+      @if map-get($options, offsetAfter) != 0
+        @if $usePadding == true
+          padding-right: calc(#{percentage(1 / map-get($options, of))} * #{map-get($options, offsetAfter)})
+        @else
+          margin-right: calc(#{percentage(1 / map-get($options, of))} * #{map-get($options, offsetAfter)} + #{map-get($g, right)})
 
     // Handle order
     @if map-get($options, order) > 0
       +gridItemOrder(map-get($options, order), true)
+
+/**
+ * Defines the element as a child of a default sassy grid.
+ *
+ * NOTE: Items of this kind should ONLY be added to a grid that has the +gridItem mixin AND NOT the +gridItemV mixin applied to it
+ *
+ * @param $span The range this column should take up in its width.
+ *              (Range: 1 - $sassyGridColumns / the value of options.of)
+ * @param $options Can take additional options for this item
+ *                - of:     Can be used to override the default $sassyGridColumns value for this item
+ *                - order:  The numeric order of this item in the element list
+ *                - gutter: A valid gutter definition for sassyParseGutter() to change/disable
+ *                          the gutter of this child
+ *                - offset: The column offset to the item that comes before this item
+ *                - offsetAfter: The same as offset but applies to the item after this item
+ *                - usePadding: By default the margin is used to create the gutters.
+ *                              If this conflicts with your use-case set this to true and the padding is used instead.
+ *
+=gridItem($span: $sassyGridColumns, $options: ())
+  $options: map-merge((gutter: true), $options)
+  $gutter: sassyParseGutter(map-get($options, gutter), false)
+  $options: map-merge($options, (gutter: $gutter))
+  +gridItemV($span, $options)

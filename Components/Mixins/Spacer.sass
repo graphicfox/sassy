@@ -2,12 +2,21 @@
  * Created by Martin Neundorfer on 10.01.2019.
  * For LABOR.digital
  */
+
+/**
+ * Adds a margin to the top of the element.
+ * The margin size is based on the configured $sassySpacerMultipliers and the given multiplier id
+ *
 =st($spacerType: 1)
   @if length($sassySpacerMultipliers) < $spacerType
     margin-top: #{$spacerType * 3 * $sassySpacerBase}
   @else
     margin-top: nth($sassySpacerMultipliers, $spacerType) * $sassySpacerBase
-
+    
+/**
+ * Adds a margin to the bottom of the element.
+ * The margin size is based on the configured $sassySpacerMultipliers and the given multiplier id
+ *
 =sb($spacerType: 1)
   @if length($sassySpacerMultipliers) < $spacerType
     margin-bottom: #{$spacerType * 3 * $sassySpacerBase}

@@ -1,0 +1,96 @@
+/*!
+ / Copyright 2020 LABOR.digital
+ /
+ / Licensed under the Apache License, Version 2.0 (the "License");
+ / you may not use this file except in compliance with the License.
+ / You may obtain a copy of the License at
+ /
+ /     http://www.apache.org/licenses/LICENSE-2.0
+ /
+ / Unless required by applicable law or agreed to in writing, software
+ / distributed under the License is distributed on an "AS IS" BASIS,
+ / WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ / See the License for the specific language governing permissions and
+ / limitations under the License.
+ /
+ / Last modified: 2020.03.14 at 17:19
+ /
+
+.exampleGridGutterConfig
+  
+  .container
+    +container
+  
+  .grid
+    +grid()
+  
+  .item
+    +gridItem(2)
+    
+    +bpSmAndSmaller
+      +gridItem(4)
+    
+    // You can completely remove the gutter on both sides
+    &--noGutter
+      // "off" and "auto" are equivalent with setting the value to 0
+      $opt: (gutter: false)
+      +gridItem(2, $opt)
+      
+      +bpSmAndSmaller
+        +gridItem(4, $opt)
+      
+    // Remove the gutter on the left side
+    &--noGutterLeft
+      // "auto" and "true" both are replaced with the default gutter set in the config
+      $opt: (gutter: 0 auto)
+      +gridItem(2, $opt)
+  
+      +bpSmAndSmaller
+        +gridItem(4, $opt)
+  
+    // Remove the gutter on the right side
+    &--noGutterRight
+      $opt: (gutter: auto 0)
+      +gridItem(2, $opt)
+  
+      +bpSmAndSmaller
+        +gridItem(4, $opt)
+      
+    // You can also modify the value instead of disabling it
+    // NOTE: The gutter definition will be split by 2 because the gutter is always shared between two items.
+    &--changedGutter
+      $opt: (gutter: (left: 60px, right: 10px))
+      +gridItem(2, $opt)
+      
+      +bpSmAndSmaller
+        // You can also define different gutters on different breakpoints
+        $opt: (gutter: (left: off, right: 10px))
+        +gridItem(4, $opt)
+        
+  .gridV
+    // You can change the gutter compensation using any valid gutter definition
+    // Here we disable the vertical compensation but leave the horizontal value on the default
+    +gridV(0 auto)
+    
+  .itemV
+    +gridItemV(4)
+  
+    &--noGutter
+      // You can set "true" to use the default gutter on all sides or "false" to disable the gutter on all sides
+      +gridItemV(4, (gutter: false))
+  
+    &--noGutterVertical
+      // You can use the css short syntax like "vertical gutter" and "horizontal gutter"
+      +gridItemV(4, (gutter: 0 true))
+  
+    &--noGutterHorizontal
+      +gridItemV(4, (gutter: auto 0))
+  
+    &--noGutterLeft
+      // You can use the sass map syntax for "top", "right", "bottom" and "left"
+      +gridItemV(4, (gutter: (left: false)))
+  
+    &--noGutterRight
+      // You can also use the css syntax for "top", "right", "bottom" and "left"
+      +gridItemV(4, (gutter: auto 0 auto auto))
+    
