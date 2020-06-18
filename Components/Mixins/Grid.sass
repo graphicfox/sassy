@@ -224,13 +224,20 @@
 
   @else
     overflow: inherit
-    flex-basis: calc(#{percentage($span / map-get($options, of))} - #{(map-get($g, left) + map-get($g, right))})
+    
+    // Calculate flex basis
+    @if $usePadding == false
+      flex-basis: calc(#{percentage($span / map-get($options, of))} - #{(map-get($g, left) + map-get($g, right))})
+    @else
+      flex-basis: #{percentage($span / map-get($options, of))}
+
+    // Update margins or padding
     $margins: map-get($g, top) map-get($g, right) map-get($g, bottom) map-get($g, left)
     @if $usePadding == true
       padding: $margins
     @else
       margin: $margins
-
+      
     // Handle offset
     @if map-get($options, offset) != off
       @if map-get($options, offset) != 0
