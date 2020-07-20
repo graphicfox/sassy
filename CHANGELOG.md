@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.7](https://github.com/Neunerlei/sassy/compare/v2.0.6...v2.0.7) (2020-07-20)
+
+
+### Bug Fixes
+
+* update doc dependencies ([bae4b60](https://github.com/Neunerlei/sassy/commit/bae4b608d6cb403de06dc6a80ba00e752550a085))
+
 ### [2.0.6](https://github.com/Neunerlei/sassy/compare/v2.0.5...v2.0.6) (2020-06-18)
 
 
