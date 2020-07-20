@@ -11,7 +11,7 @@
 	"author": "",
 	"license": "Apache-2.0",
 	"dependencies": {
-		"@labor-digital/asset-building": "^4.15.0",
+		"@labor-digital/asset-building": "^4.16.1",
 		"vue-draggable-resizable": "^2.2.0",
 		"vuepress": "^1.5.2",
 		"@neunerlei/sassy": "./.."
