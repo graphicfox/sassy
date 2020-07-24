@@ -14,16 +14,16 @@
 // Default paddings
 // =====================================
 =pt($value: 1)
-  padding-top: _paddingValueRenderer($value, $sassyMarginVertical)
+  padding-top: _paddingValueRenderer($value, $sassyPaddingVertical)
 
 =pr($value: 1)
-  padding-right: _paddingValueRenderer($value, $sassyMarginHorizontal)
+  padding-right: _paddingValueRenderer($value, $sassyPaddingHorizontal)
 
 =pb($value: 1)
-  padding-bottom: _paddingValueRenderer($value, $sassyMarginVertical)
+  padding-bottom: _paddingValueRenderer($value,$sassyPaddingVertical)
 
 =pl($value: 1)
-  padding-left: _paddingValueRenderer($value, $sassyMarginHorizontal)
+  padding-left: _paddingValueRenderer($value, $sassyPaddingHorizontal)
 
 // Combined paddings
 // =====================================
@@ -40,6 +40,6 @@
 // All paddings
 // =====================================
 =p($value:1)
-  $mv: _paddingValueRenderer($value, $sassyMarginVertical)
-  $mh: _paddingValueRenderer($value, $sassyMarginHorizontal)
+  $mv: _paddingValueRenderer($value, $sassyPaddingVertical)
+  $mh: _paddingValueRenderer($value, $sassyPaddingHorizontal)
   padding: $mv $mh $mv $mh
